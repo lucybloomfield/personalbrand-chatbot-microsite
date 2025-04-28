@@ -21,28 +21,42 @@ let currentMessage = 0;
 function showNextMessage() {
   if (currentMessage < chatbotMessages.length) {
     const messageDiv = document.createElement('div');
-    messageDiv.classList.add('animate__animated', 'animate__fadeInUp', 'p-2', 'bg-gray-100', 'rounded-lg', 'max-w-xs', 'bot');
+    messageDiv.classList.add('animate__animated', 'animate__fadeInUp', 'p-4', 'bg-gray-100', 'rounded-lg', 'max-w-xs', 'mb-4', 'bot', 'w-full', 'text-left');
     messageDiv.textContent = chatbotMessages[currentMessage];
     chatBox.appendChild(messageDiv);
     currentMessage++;
     chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to the latest message
-
-    // Call the function again after 2 seconds to show the next message
-    setTimeout(showNextMessage, 2000);
   } else {
     // After the last message, show the form
     showForm();
   }
 }
 
+// Function to handle user message submission
+function handleUserMessage(input) {
+  const messageWrapperDiv = document.createElement('div');
+  messageWrapperDiv.classList.add('flex', 'justify-end', 'w-full', 'mb-4'); // Align to the right
+
+  const messageDiv = document.createElement('div');
+  messageDiv.classList.add('animate__animated', 'animate__fadeInUp', 'p-4', 'bg-blue-500', 'rounded-lg', 'max-w-xs', 'user');
+  messageDiv.textContent = input;
+
+  messageWrapperDiv.appendChild(messageDiv); // Wrap the bubble inside the full-width div
+  chatBox.appendChild(messageWrapperDiv);
+  userInput.value = ''; // Clear input field
+  chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to the latest message
+  // Proceed to show bot message after user message
+  showNextMessage();
+}
+
 // Function to show the form at the end of the chat
 function showForm() {
   const formDiv = document.createElement('div');
-  formDiv.classList.add('animate__animated', 'animate__fadeInUp', 'p-2', 'bg-gray-100', 'rounded-lg', 'max-w-xs', 'bot');
+  formDiv.classList.add('animate__animated', 'animate__fadeInUp', 'p-4', 'bg-gray-100', 'rounded-lg', 'max-w-xs', 'bot', 'w-full', 'text-left', 'mb-4');
   formDiv.innerHTML = `
-    <label for="brief" class="block">Tell me about your project:</label>
+    <label for="brief" class="block mb-2">Tell me about your project:</label>
     <textarea id="brief" class="w-full p-2 mt-2 border rounded" rows="4" placeholder="Your project details..."></textarea>
-    <button id="submit-btn" class="mt-2 p-2 bg-blue-500 text-white rounded">Submit</button>
+    <button id="submit-btn" class="mt-2 p-2 bg-blue-500 text-white rounded w-full">Submit</button>
   `;
   chatBox.appendChild(formDiv);
 
@@ -50,10 +64,16 @@ function showForm() {
   document.getElementById('submit-btn').addEventListener('click', function() {
     const brief = document.getElementById('brief').value;
     console.log('Project brief submitted:', brief);
-    // You can handle form submission here (e.g., send data to email via FormSubmit or Netlify)
     alert('Your brief has been submitted!');
   });
 }
 
-// Start the chat
+// Start the chat when the page loads
 showNextMessage();
+
+// Listen for user input submission
+userInput.addEventListener('keypress', function(event) {
+  if (event.key === 'Enter' && userInput.value.trim()) {
+    handleUserMessage(userInput.value.trim());
+  }
+});
