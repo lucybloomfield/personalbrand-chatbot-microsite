@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lucy Bloomfield Chatbot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="dist/output.css" rel="stylesheet">  <!-- Your Tailwind CSS file after build -->
+  <script src="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></script>  <!-- CDN for Animate.css -->
+</head>
+<body class="font-roboto bg-gray-50">
+  <div id="chat-container" class="flex justify-center items-center min-h-screen p-4">
+    <div id="chat-box" class="bg-white rounded-lg p-4 w-full max-w-xl shadow-lg">
+      <div id="chat" class="space-y-4"></div>
+      <input id="user-input" type="text" class="w-full p-2 border mt-4 rounded" placeholder="Type here..." autofocus />
+    </div>
+  </div>
+  <script src="app.js"></script>  <!-- Add your custom JS here -->
+</body>
+</html>
