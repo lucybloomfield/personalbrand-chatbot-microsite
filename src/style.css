@@ -36,6 +36,36 @@ body {
     gap: 15px; /* Space between messages */
 }
 
+/* Chat Header (iOS-like with Avatar and Name) */
+#chat-header {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    padding: 15px 20px;
+    background-color: #181818; /* Dark header background */
+    border-radius: 10px;
+    margin-bottom: 15px; /* Spacing between header and messages */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#chat-header .avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #007aff; /* Placeholder background color */
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+#chat-header .name {
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+}
+
 /* Chat Area */
 #chat {
     overflow-y: auto;
@@ -143,17 +173,6 @@ button[type="submit"] {
 @keyframes typing {
     0%, 100% { opacity: 0.3; }
     50% { opacity: 1; }
-}
-
-/* Chat Header (iOS-like) */
-#chat-header {
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    padding: 10px 20px;
-    background-color: #181818; /* Dark header background */
-    border-radius: 10px;
-    margin-bottom: 15px; /* Spacing between header and messages */
 }
 
 /* Responsive Styles */
