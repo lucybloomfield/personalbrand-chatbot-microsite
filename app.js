@@ -2,11 +2,17 @@ const chatBox = document.getElementById('chat');
 const userInput = document.getElementById('user-input');
 
 const chatbotMessages = [
-  "Hey! 👋 I'm Lucy. Thanks for popping by.",
-  "I'm based in Melbourne, but I work with companies worldwide. 🌎",
-  "I help brands nail their marketing and performance without the usual agency crap. 🚀",
+  "Hey! 👋 I'm Lucy. How can I help you today?",
+  "I'm based in Adelaide, but I work with companies nationwide.",
+  "I bring a unique blend of marketing, sales, project management and technical skill to large-scale organisations.",
+  "Here’s a bit of what I’ve done:",
+  "I grew my first skin care brand from 0 to 10,000 customers in 18 months",
+  "I helped Australia Post launch their premium 3PL offering, Fulfilio",
+  "I grew a marketing services company called 10k Customers from 0 to $100k p/m",
+  "I helped Brunetti Oro double and triple their seasonal category revenue",
+  "Honestly, the list goes on.",
   "Right now, I'm open to project briefs for specific types of work.",
-  "If you think we'd vibe, send me your brief 👇"
+  "If you think you've got something my skill will help solve, send me your brief 👇"
 ];
 
 let currentMessage = 0;
@@ -15,7 +21,7 @@ let currentMessage = 0;
 function showNextMessage() {
   if (currentMessage < chatbotMessages.length) {
     const messageDiv = document.createElement('div');
-    messageDiv.classList.add('animate__animated', 'animate__fadeInUp', 'p-2', 'bg-gray-100', 'rounded-lg', 'max-w-xs');
+    messageDiv.classList.add('animate__animated', 'animate__fadeInUp', 'p-2', 'bg-gray-100', 'rounded-lg', 'max-w-xs', 'bot');
     messageDiv.textContent = chatbotMessages[currentMessage];
     chatBox.appendChild(messageDiv);
     currentMessage++;
@@ -32,7 +38,7 @@ function showNextMessage() {
 // Function to show the form at the end of the chat
 function showForm() {
   const formDiv = document.createElement('div');
-  formDiv.classList.add('animate__animated', 'animate__fadeInUp', 'p-2', 'bg-gray-100', 'rounded-lg', 'max-w-xs');
+  formDiv.classList.add('animate__animated', 'animate__fadeInUp', 'p-2', 'bg-gray-100', 'rounded-lg', 'max-w-xs', 'bot');
   formDiv.innerHTML = `
     <label for="brief" class="block">Tell me about your project:</label>
     <textarea id="brief" class="w-full p-2 mt-2 border rounded" rows="4" placeholder="Your project details..."></textarea>
