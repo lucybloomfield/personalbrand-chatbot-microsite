@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lucy Bloomfield Chatbot</title>
+  <title>Lucy Bloomfield - Marketing, Tech & Teams That Perform</title>
   <link href="src/style.css" rel="stylesheet">
   <link href="dist/output.css" rel="stylesheet">
 </head>
-<body class="bg-[#121212]">
+<body>
 
   <!-- Home Screen (Initially hidden, shown when back button is clicked) -->
   <div id="home-screen" class="hidden flex flex-col items-center justify-center min-h-screen bg-[#121212]">
@@ -39,7 +39,7 @@
 
         <!-- Contact Info (Avatar + Name) -->
         <div class="flex flex-col items-center">
-          <img class="avatar w-10 h-10 rounded-full object-cover" src="path_to_avatar_image.jpg" alt="Avatar">
+          <img class="avatar w-10 h-10 rounded-full object-cover" src="src/img/contact-avatar.png" alt="Avatar">
           <div class="name text-white text-sm font-semibold mt-1">Lucy Bloomfield</div>
         </div>
 
@@ -60,12 +60,13 @@
           <button id="closeModalBtn" class="absolute top-0 right-0 text-2xl font-bold text-black">&times;</button>
           
           <!-- Video Player -->
-          <div class="video-container">
-            <video id="myVideo" class="w-full h-auto" controls>
-              <source src="path_to_your_video.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
+          <div id="video-modal" class="hidden">
+            <div id="video-header">
+              <button id="back-button">←</button>
+            </div>
+            <video id="video-call" autoplay muted playsinline></video>
           </div>
+          
         </div>
       </div>
 

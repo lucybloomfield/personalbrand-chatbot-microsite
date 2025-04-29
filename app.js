@@ -106,17 +106,21 @@ userInput.addEventListener('keypress', function(event) {
 // Get references to the modal, video call button, and close button
 const modal = document.getElementById('videoModal');
 const videoCallButton = document.getElementById('video-call-button');
-const closeModalButton = document.getElementById('closeModalBtn');
+const backButton = document.getElementById('back-button');
+const chatContainer = document.getElementById('chat-container');
 
-// Show the video modal when the video call button is clicked
-videoCallButton.addEventListener('click', function() {
-  modal.classList.remove('hidden');  // Show the modal
+// Show modal and hide chat
+videoCallButton.addEventListener('click', () => {
+  modal.classList.remove('hidden');
+  chatContainer.classList.add('hidden');
 });
 
-// Close the modal when the close button is clicked
-closeModalButton.addEventListener('click', function() {
-  modal.classList.add('hidden');  // Hide the modal
+// Hide modal and show chat
+backButton.addEventListener('click', () => {
+  modal.classList.add('hidden');
+  chatContainer.classList.remove('hidden');
 });
+
 
 // Time Update Functionality
 function updateTime() {
