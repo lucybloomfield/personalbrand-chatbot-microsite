@@ -79,7 +79,7 @@ function showForm() {
 // Function to show Typing... indicator
 function showTypingIndicator() {
   typingDiv = document.createElement('div');
-  typingDiv.classList.add('animate__animated', 'animate__fadeInUp', 'p-4', 'bg-gray-700', 'text-white', 'rounded-lg', 'max-w-xs', 'mb-4', 'w-full', 'text-left');
+  typingDiv.classList.add('animate__animated', 'animate__fadeInUp', 'p-4', 'bg-gray-700', 'text-white', 'rounded-lg', 'max-w-xs', 'mb-4', 'w-full', 'text-left', 'typing-indicator');
   typingDiv.textContent = '...';
   chatBox.appendChild(typingDiv);
   chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to latest
@@ -101,4 +101,19 @@ userInput.addEventListener('keypress', function(event) {
   if (event.key === 'Enter' && userInput.value.trim()) {
     handleUserMessage(userInput.value.trim());
   }
+});
+
+// Get references to the modal, video call button, and close button
+const modal = document.getElementById('videoModal');
+const videoCallButton = document.getElementById('video-call-button');
+const closeModalButton = document.getElementById('closeModalBtn');
+
+// Show the video modal when the video call button is clicked
+videoCallButton.addEventListener('click', function() {
+  modal.classList.remove('hidden');  // Show the modal
+});
+
+// Close the modal when the close button is clicked
+closeModalButton.addEventListener('click', function() {
+  modal.classList.add('hidden');  // Hide the modal
 });
