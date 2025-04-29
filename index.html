@@ -8,14 +8,32 @@
   <link href="dist/output.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></script> <!-- CDN for Animate.css -->
 </head>
-<body>
+<body class="bg-[#121212]">
+
   <div id="chat-container" class="flex justify-center items-center min-h-screen p-4">
     <div id="chat-box" class="bg-white rounded-lg p-4 w-full max-w-xl shadow-lg flex flex-col h-full">
 
-      <!-- Contact Card with Avatar and Name -->
-      <div id="chat-header">
-        <img class="avatar" src="path_to_avatar_image.jpg" alt="Avatar"> <!-- Replace with your image path -->
-        <div class="name">Lucy Bloomfield</div> <!-- Replace with your name -->
+      <!-- Contact Card with Avatar, Name, and Icons (Back Arrow and Video Call) -->
+      <div id="chat-header" class="flex items-center justify-between bg-[#181818] p-4 rounded-lg mb-4">
+        <!-- Back Arrow -->
+        <div class="flex items-center gap-2">
+          <button id="back-button" class="text-white text-2xl">
+            &#8592; <!-- Unicode Left Arrow -->
+          </button>
+        </div>
+
+        <!-- Contact Info (Avatar + Name) -->
+        <div class="flex flex-col items-center">
+          <img class="avatar w-10 h-10 rounded-full object-cover" src="path_to_avatar_image.jpg" alt="Avatar">
+          <div class="name text-white text-sm font-semibold mt-1">Lucy Bloomfield</div>
+        </div>
+
+        <!-- Video Call Icon -->
+        <div class="flex items-center gap-2">
+          <button id="video-call-button" class="text-white text-2xl">
+            📹 <!-- Placeholder: Camera emoji -->
+          </button>
+        </div>
       </div>
 
       <!-- Chat Area -->

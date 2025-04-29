@@ -10,13 +10,12 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-  }  
+}
 
 body {
     background-color: #121212; /* Dark background for body */
     color: #fff; /* Light text color */
 }
-
 
 /* Chat Area */
 #chat {
@@ -59,9 +58,8 @@ body {
     border-radius: 10px;
     margin-bottom: 15px; /* Spacing between header and messages */
     display: flex;
-    flex-direction: column;
     align-items: center;
-    text-align: center;
+    justify-content: space-between;
 }
 
 #chat-header .avatar {
@@ -69,7 +67,7 @@ body {
     height: 50px;
     border-radius: 50%;
     background-color: #007aff; /* Placeholder background color */
-    margin-bottom: 10px;
+    margin-right: 10px;
     object-fit: cover;
 }
 
@@ -77,6 +75,20 @@ body {
     font-size: 18px;
     font-weight: 600;
     color: white;
+}
+
+#chat-header .back-button,
+#chat-header .video-call-button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+#chat-header .back-button:hover,
+#chat-header .video-call-button:hover {
+    opacity: 0.7;
 }
 
 /* Bot and User Message Styling */
