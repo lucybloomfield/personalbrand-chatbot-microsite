@@ -104,6 +104,7 @@ body {
     animation: fadeIn 0.5s ease-out;
     background-color: #007aff; /* iPhone blue for both bot and user */
     color: #fff; /* White text for both */
+    position: relative; /* To position the triangle */
 }
 
 /* Bot Message */
@@ -118,6 +119,32 @@ body {
     text-align: right;
     margin-left: auto;
     box-shadow: 0 0 5px rgba(0, 122, 255, 0.4); /* Light glow effect for the blue bubble */
+}
+
+/* Triangle for Bot */
+.bot::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 5px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #007aff; /* Same color as the bot's bubble */
+}
+
+/* Triangle for User */
+.user::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 5px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #007aff; /* Same color as the user's bubble */
 }
 
 /* Input Field */
