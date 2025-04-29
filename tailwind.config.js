@@ -5,7 +5,11 @@
       "./src/**/*.{html,js}", // If you have additional JS files
     ],
     theme: {
-      extend: {},
+      extend: {
+        fontFamily: {
+          sans: ['"Work Sans"', 'sans-serif'],
+        },
+      },
     },
     plugins: [],
   }

@@ -7,8 +7,24 @@
   <link href="src/style.css" rel="stylesheet">
   <link href="dist/output.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-[#121212]">
 
+  <!-- Home Screen (Initially hidden, shown when back button is clicked) -->
+  <div id="home-screen" class="hidden flex flex-col items-center justify-center min-h-screen bg-[#121212]">
+    <!-- Status Bar -->
+    <div id="status-bar" class="w-full p-2 bg-black text-white text-center">
+        <span id="time" class="text-lg font-bold"></span> <!-- Show time here -->
+    </div>
+
+    <!-- Message App Icon to return to Chat -->
+    <div class="flex flex-col items-center mt-10">
+        <button id="back-to-chat" class="text-white bg-blue-500 px-6 py-2 rounded-lg text-lg">
+            💬 Return to Chat
+        </button>
+    </div>
+  </div>
+
+  <!-- Chat Screen (Initially visible) -->
   <div id="chat-container" class="flex justify-center items-center min-h-screen p-4">
     <div id="chat-box" class="rounded-lg p-4 w-full max-w-xl shadow-lg flex flex-col h-full">
 
@@ -39,19 +55,19 @@
       <div id="chat" class="flex-1 overflow-y-auto space-y-4"></div>
 
       <!-- Video Modal (Hidden initially) -->
-    <div id="videoModal" class="hidden fixed inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center z-50">
+      <div id="videoModal" class="hidden fixed inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center z-50">
         <div class="bg-white p-4 rounded-lg max-w-2xl">
-        <button id="closeModalBtn" class="absolute top-0 right-0 text-2xl font-bold text-black">&times;</button>
-        
-        <!-- Video Player -->
-        <div class="video-container">
+          <button id="closeModalBtn" class="absolute top-0 right-0 text-2xl font-bold text-black">&times;</button>
+          
+          <!-- Video Player -->
+          <div class="video-container">
             <video id="myVideo" class="w-full h-auto" controls>
-            <source src="path_to_your_video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
+              <source src="path_to_your_video.mp4" type="video/mp4">
+              Your browser does not support the video tag.
             </video>
+          </div>
         </div>
-        </div>
-    </div>
+      </div>
 
       <!-- User Input Area -->
       <div id="input-area" class="pt-4">
