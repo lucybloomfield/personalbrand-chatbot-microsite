@@ -2,7 +2,7 @@ const chatBox = document.getElementById('chat');
 const userInput = document.getElementById('user-input');
 
 const chatbotMessages = [
-  "Hey! 👋 I'm Lucy. How can I help you today?",
+  "Helloooooo!",
   "I'm based in Adelaide, but I work with companies nationwide.",
   "I bring a unique blend of marketing, sales, project management and technical skill to large-scale organisations.",
   "Here’s a bit of what I’ve done:",
@@ -16,16 +16,24 @@ const chatbotMessages = [
 ];
 
 let currentMessage = 0;
+let typingDiv = null; // Variable to hold the typing indicator
 
 // Function to animate the chat messages
 function showNextMessage() {
   if (currentMessage < chatbotMessages.length) {
-    const messageDiv = document.createElement('div');
-    messageDiv.classList.add('animate__animated', 'animate__fadeInUp', 'p-4', 'bg-gray-100', 'rounded-lg', 'max-w-xs', 'mb-4', 'bot', 'w-full', 'text-left');
-    messageDiv.textContent = chatbotMessages[currentMessage];
-    chatBox.appendChild(messageDiv);
-    currentMessage++;
-    chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to the latest message
+    showTypingIndicator();
+
+    // Delay before showing the next message
+    setTimeout(() => {
+      removeTypingIndicator();
+
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('animate__animated', 'animate__fadeInUp', 'p-4', 'bg-gray-100', 'rounded-lg', 'max-w-xs', 'mb-4', 'bot', 'w-full', 'text-left');
+      messageDiv.textContent = chatbotMessages[currentMessage];
+      chatBox.appendChild(messageDiv);
+      currentMessage++;
+      chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to the latest message
+    }, 1000); // 1 second delay for "Lucy is typing..."
   } else {
     // After the last message, show the form
     showForm();
@@ -35,10 +43,10 @@ function showNextMessage() {
 // Function to handle user message submission
 function handleUserMessage(input) {
   const messageWrapperDiv = document.createElement('div');
-  messageWrapperDiv.classList.add('flex', 'justify-end', 'w-full', 'mb-4'); // Align to the right
+  messageWrapperDiv.classList.add('flex', 'w-full', 'mb-4'); // Align to the right
 
   const messageDiv = document.createElement('div');
-  messageDiv.classList.add('animate__animated', 'animate__fadeInUp', 'p-4', 'bg-blue-500', 'rounded-lg', 'max-w-xs', 'user');
+  messageDiv.classList.add('animate__animated', 'animate__fadeInUp', 'p-4', 'bg-blue-500', 'text-white', 'rounded-lg', 'max-w-xs', 'user');
   messageDiv.textContent = input;
 
   messageWrapperDiv.appendChild(messageDiv); // Wrap the bubble inside the full-width div
@@ -66,6 +74,23 @@ function showForm() {
     console.log('Project brief submitted:', brief);
     alert('Your brief has been submitted!');
   });
+}
+
+// Function to show Typing... indicator
+function showTypingIndicator() {
+  typingDiv = document.createElement('div');
+  typingDiv.classList.add('animate__animated', 'animate__fadeInUp', 'p-4', 'bg-gray-700', 'text-white', 'rounded-lg', 'max-w-xs', 'mb-4', 'w-full', 'text-left');
+  typingDiv.textContent = '...';
+  chatBox.appendChild(typingDiv);
+  chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to latest
+}
+
+// Function to remove the Typing... indicator
+function removeTypingIndicator() {
+  if (typingDiv) {
+    chatBox.removeChild(typingDiv);
+    typingDiv = null;
+  }
 }
 
 // Start the chat when the page loads

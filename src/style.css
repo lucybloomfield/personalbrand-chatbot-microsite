@@ -93,7 +93,6 @@ body {
 
 /* Bot and User Message Styling */
 .bot, .user {
-    max-width: 80%;
     padding: 12px;
     border-radius: 20px;
     margin-bottom: 10px;
@@ -105,6 +104,7 @@ body {
     background-color: #007aff; /* iPhone blue for both bot and user */
     color: #fff; /* White text for both */
     position: relative; /* To position the triangle */
+    max-width: 70%;
 }
 
 /* Bot Message */
@@ -134,6 +134,20 @@ body {
     border-top: 10px solid #007aff; /* Same color as the bot's bubble */
 }
 
+/*Typing Indicator */
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    height: 20px;
+    gap: 4px;
+  }
+  
+  @keyframes typing {
+    0% { transform: translateY(0); }
+    20% { transform: translateY(-5px); }
+    40% { transform: translateY(0); }
+  }
+
 /* Triangle for User */
 .user::after {
     content: '';
@@ -146,16 +160,6 @@ body {
     border-right: 10px solid transparent;
     border-top: 10px solid #007aff; /* Same color as the user's bubble */
 }
-
-/* Delivered label under the user message */
-.delivered-label {
-    font-size: 12px; /* Smaller font for the label */
-    color: #bbb; /* Light gray color for the "Delivered" text */
-    font-style: italic; /* Italic text style */
-    text-align: right; /* Right-align the label */
-    opacity: 0.6; /* Faded effect */
-    margin-top: 5px; /* Small space between message and label */
-  }
 
 /* Input Field */
 #user-input {
@@ -180,17 +184,6 @@ body {
     background-color: #3a3a3c;
 }
 
-/* Button (if added later) */
-button[type="submit"] {
-    background-color: #007aff; /* iPhone blue */
-    color: #fff;
-    border: none;
-    padding: 12px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
 /* Scrollbar Styling */
 #chat-container::-webkit-scrollbar {
     width: 8px;
@@ -199,45 +192,6 @@ button[type="submit"] {
 #chat-container::-webkit-scrollbar-thumb {
     background-color: #444;
     border-radius: 5px;
-}
-
-/* Fade-in Animation */
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
-/* Typing Indicator */
-.typing-indicator {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.typing-indicator div {
-    width: 10px;
-    height: 10px;
-    margin: 0 3px;
-    border-radius: 50%;
-    background-color: #bbb;
-    animation: typing 1.2s infinite ease-in-out;
-}
-
-.typing-indicator div:nth-child(1) {
-    animation-delay: 0s;
-}
-
-.typing-indicator div:nth-child(2) {
-    animation-delay: 0.4s;
-}
-
-.typing-indicator div:nth-child(3) {
-    animation-delay: 0.8s;
-}
-
-@keyframes typing {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
 }
 
 /* Responsive Styles */
