@@ -6,25 +6,29 @@
   <title>Lucy Bloomfield Chatbot</title>
   <link href="src/style.css" rel="stylesheet">
   <link href="dist/output.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></script>  <!-- CDN for Animate.css -->
+  <script src="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></script> <!-- CDN for Animate.css -->
 </head>
 <body>
   <div id="chat-container" class="flex justify-center items-center min-h-screen p-4">
-    <div id="chat-box" class="bg-white rounded-lg p-4 w-full max-w-xl shadow-lg">
-      
+    <div id="chat-box" class="bg-white rounded-lg p-4 w-full max-w-xl shadow-lg flex flex-col h-full">
+
       <!-- Contact Card with Avatar and Name -->
       <div id="chat-header">
         <img class="avatar" src="path_to_avatar_image.jpg" alt="Avatar"> <!-- Replace with your image path -->
         <div class="name">Lucy Bloomfield</div> <!-- Replace with your name -->
       </div>
-      
+
       <!-- Chat Area -->
-      <div id="chat" class="space-y-4"></div>
-      
-      <!-- User Input -->
-      <input id="user-input" type="text" class="w-full p-2 border mt-4 rounded" placeholder="Type here..." autofocus />
+      <div id="chat" class="flex-1 overflow-y-auto space-y-4"></div>
+
+      <!-- User Input Area -->
+      <div id="input-area" class="pt-4">
+        <input id="user-input" type="text" class="w-full p-2 border rounded" placeholder="Type here..." autofocus />
+      </div>
+
     </div>
   </div>
-  <script src="app.js"></script>  <!-- Add your custom JS here -->
+
+  <script src="app.js"></script> <!-- Add your custom JS here -->
 </body>
 </html>
