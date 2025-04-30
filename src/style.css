@@ -32,35 +32,19 @@ body {
 		background-position: 0% 50%;
 	}
 }
-/* Chat Area */
-#chat {
-    overflow-y: auto;
-    max-height: 400px;
-    padding-bottom: 10px;
-    padding-top: 10px;
-}
 
-/* Chat Container */
-#chat-container {
-    height: 100% !important;
+/* Phone Container  */
+.phone-container {
+    height: 99%;
+    max-width: 500px;
     display: flex;
-    flex: 1;
     flex-direction: column;
-    padding: 20px;
-}
-
-/* Chat Box */
-#chat-box {
+    flex: 1;
+    gap: 15px;
     background-color: #1c1c1e;
     border-radius: 20px;
-    padding: 20px;
-    width: 100%;
-    max-width: 500px;
-    height: 100%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    margin:0 auto;
 }
 
 /* Chat Header */
@@ -136,6 +120,13 @@ body {
     box-shadow: 0 0 5px rgba(0, 122, 255, 0.4);
 }
 
+/* Chat Area */
+#chat {
+    overflow-y: auto;
+    max-height: 400px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
 /* Input Field */
 #user-input {
     background-color: #2c2c2e;
@@ -173,17 +164,11 @@ body {
 #video-modal {
     position: fixed;
     top: 0;
-    left: 0;
-    z-index: 9999;
-    width: 100vw;
-    height: 100vh;
+    width: 500px;
+    margin: 0 auto;
     background-color: #000;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 0;
-    margin: 0;
 }
 
 /* Video Header */
