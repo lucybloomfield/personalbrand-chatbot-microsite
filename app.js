@@ -103,24 +103,6 @@ userInput.addEventListener('keypress', function(event) {
   }
 });
 
-// Get references to the modal, video call button, and close button
-const modal = document.getElementById('videoModal');
-const videoCallButton = document.getElementById('video-call-button');
-const backButton = document.getElementById('back-button');
-const chatContainer = document.getElementById('chat-container');
-
-// Show modal and hide chat
-videoCallButton.addEventListener('click', () => {
-  modal.classList.remove('hidden');
-  chatContainer.classList.add('hidden');
-});
-
-// Hide modal and show chat
-backButton.addEventListener('click', () => {
-  modal.classList.add('hidden');
-  chatContainer.classList.remove('hidden');
-});
-
 
 // Time Update Functionality
 function updateTime() {
@@ -135,7 +117,7 @@ function updateTime() {
   setInterval(updateTime, 1000); // Update every second
 
   // Back Button Logic (Go to Home Screen)
-  document.getElementById("back-button").addEventListener("click", function() {
+  document.getElementById("messages-back-button").addEventListener("click", function() {
     // Hide the chat screen and show the home screen
     document.getElementById("chat-container").style.display = "none";
     document.getElementById("home-screen").style.display = "flex";
@@ -154,6 +136,7 @@ function updateTime() {
   });
 
   // Close Modal Logic
-  document.getElementById("closeModalBtn").addEventListener("click", function() {
+  document.getElementById("video-back-button").addEventListener("click", function() {
     document.getElementById("videoModal").classList.add("hidden");
+    document.getElementById("chat-container").style.display = "flex";
   });
