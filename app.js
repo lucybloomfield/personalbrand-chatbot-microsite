@@ -2,18 +2,17 @@ const chatBox = document.getElementById('chat');
 const userInput = document.getElementById('user-input');
 
 const chatbotMessages = [
-  "Helloooooo!",
-  "I'm based in Adelaide, but I work with companies nationwide.",
-  "I bring a unique blend of marketing, sales, project management and technical skill to large-scale organisations.",
-  "Here’s a bit of what I’ve done:",
-  "I grew my first skin care brand from 0 to 10,000 customers in 18 months",
-  "I helped Australia Post launch their premium 3PL offering, Fulfilio",
-  "I grew a marketing services company called 10k Customers from 0 to $100k p/m",
-  "I helped Brunetti Oro double and triple their seasonal category revenue",
-  "Honestly, the list goes on.",
-  "Right now, I'm open to project briefs for specific types of work.",
-  "If you think you've got something my skill will help solve, send me your brief 👇"
-];
+    "Hey, I’m Lucy 👋",
+    "I help growth-stage and established brands solve marketing, sales, and performance problems.",
+    "Sometimes that means building campaigns. Sometimes it's 1:1 advisory or team training. Occasionally, I make content. Depends on what is most likely to move the needle (for you).",
+    "A bit about me:",
+    "📦 Helped AusPost launch Fulfilio, their premium 3PL offer",
+    "🧴 Took my first skincare brand from 0 to 10,000 customers in 18 months",
+    "💼 Built a marketing services company from 0 to $100k/month",
+    "🍰 Helped Brunetti Oro double and triple seasonal revenue",
+    "Right now, I'm open to the right briefs—consulting, content, strategy, or something else.",
+    "If you’ve got something specific in mind—or want to chat through how I could help—drop it below 👇"
+  ];  
 
 let currentMessage = 0;
 let typingDiv = null; // Variable to hold the typing indicator
