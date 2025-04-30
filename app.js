@@ -10,8 +10,7 @@ const chatbotMessages = [
     "🧴 Took my first skincare brand from 0 to 10,000 customers in 18 months",
     "💼 Built a marketing services company from 0 to $100k/month",
     "🍰 Helped Brunetti Oro double and triple seasonal revenue",
-    "Right now, I'm open to the right briefs—consulting, content, strategy, or something else.",
-    "If you’ve got something specific in mind—or want to chat through how I could help—drop it below 👇"
+    "Right now, I'm open to the right briefs - consulting, content, strategy, or something else — drop it below 👇",
   ];  
 
 let currentMessage = 0;
@@ -58,22 +57,24 @@ function handleUserMessage(input) {
 
 // Function to show the form at the end of the chat
 function showForm() {
-  const formDiv = document.createElement('div');
-  formDiv.classList.add('animate__animated', 'animate__fadeInUp', 'p-4', 'bg-gray-100', 'rounded-lg', 'max-w-xs', 'bot', 'w-full', 'text-left', 'mb-4');
-  formDiv.innerHTML = `
-    <label for="brief" class="block mb-2">Tell me about your project:</label>
-    <textarea id="brief" class="w-full p-2 mt-2 border rounded" rows="4" placeholder="Your project details..."></textarea>
-    <button id="submit-btn" class="mt-2 p-2 bg-blue-500 text-white rounded w-full">Submit</button>
-  `;
-  chatBox.appendChild(formDiv);
-
-  // Handle form submission
-  document.getElementById('submit-btn').addEventListener('click', function() {
-    const brief = document.getElementById('brief').value;
-    console.log('Project brief submitted:', brief);
-    alert('Your brief has been submitted!');
-  });
-}
+    const formDiv = document.createElement('div');
+    formDiv.classList.add(
+      'animate__animated', 'animate__fadeInUp', 'p-4',
+      'bg-gray-100', 'rounded-lg', 'max-w-xs', 'bot',
+      'w-full', 'text-left', 'mb-4'
+    );
+    
+    formDiv.innerHTML = `
+      <a href="https://forms.gle/QwjRBpT1SiB6RDFu9" 
+         target="_blank" 
+         class="inline-block w-full text-center text-white p-2 rounded transition">
+        Submit Your Project Brief
+      </a>
+    `;
+  
+    chatBox.appendChild(formDiv);
+  }
+  
 
 // Function to show Typing... indicator
 function showTypingIndicator() {
