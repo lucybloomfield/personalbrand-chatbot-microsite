@@ -4,9 +4,7 @@
 @tailwind utilities;
 
 @import 'animate.css';
-
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap');
-
 
 /* General Styles */
 html, body {
@@ -16,51 +14,64 @@ html, body {
 }
 
 body {
-    background-color: #121212; /* Dark background for body */
-    color: #fff; /* Light text color */
+    color: #fff;
     font-family: 'Work Sans', sans-serif;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 30s ease infinite;
 }
 
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
 /* Chat Area */
 #chat {
     overflow-y: auto;
-    max-height: 400px; /* Prevent chat box from overflowing */
+    max-height: 400px;
     padding-bottom: 10px;
     padding-top: 10px;
 }
 
 /* Chat Container */
 #chat-container {
-    height: 100% !important; /* Full height of the screen */
+    height: 100% !important;
     display: flex;
     flex: 1;
     flex-direction: column;
     padding: 20px;
-    background-color: #121212; /* Dark background */
 }
 
+/* Chat Box */
 #chat-box {
-    background-color: #1c1c1e; /* Dark chat box */
+    background-color: #1c1c1e;
     border-radius: 20px;
     padding: 20px;
     width: 100%;
-    max-width: 500px; /* Adjusted width to match a mobile experience */
+    max-width: 500px;
     height: 100%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Space between messages */
+    gap: 15px;
 }
 
-/* Chat Header (iOS-like with Avatar and Name) */
+/* Chat Header */
 #chat-header {
     font-size: 16px;
     font-weight: bold;
     color: white;
     padding: 15px 20px;
-    background-color: #181818; /* Dark header background */
+    background-color: #181818;
     border-radius: 10px;
-    margin-bottom: 15px; /* Spacing between header and messages */
+    margin-bottom: 15px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -70,7 +81,7 @@ body {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #007aff; /* Placeholder background color */
+    background-color: #007aff;
     margin-right: 10px;
     object-fit: cover;
 }
@@ -95,7 +106,7 @@ body {
     opacity: 0.7;
 }
 
-/* Bot and User Message Styling */
+/* Messages */
 .bot, .user {
     padding: 12px;
     border-radius: 20px;
@@ -105,9 +116,9 @@ body {
     font-size: 14px;
     line-height: 1.5;
     animation: fadeIn 0.5s ease-out;
-    background-color: #007aff; /* iPhone blue for both bot and user */
-    color: #fff; /* White text for both */
-    position: relative; /* To position the triangle */
+    background-color: #007aff;
+    color: #fff;
+    position: relative;
     max-width: 70%;
 }
 
@@ -115,14 +126,14 @@ body {
 .bot {
     text-align: left;
     margin-right: auto;
-    box-shadow: 0 0 5px rgba(0, 122, 255, 0.4); /* Light glow effect for the blue bubble */
+    box-shadow: 0 0 5px rgba(0, 122, 255, 0.4);
 }
 
 /* User Message */
 .user {
     text-align: right;
     margin-left: auto;
-    box-shadow: 0 0 5px rgba(0, 122, 255, 0.4); /* Light glow effect for the blue bubble */
+    box-shadow: 0 0 5px rgba(0, 122, 255, 0.4);
 }
 
 /* Input Field */
@@ -132,7 +143,7 @@ body {
     border: none;
     padding: 14px 20px;
     border-radius: 25px;
-    width: 100%; /* Full width again */
+    width: 100%;
     font-size: 16px;
     margin-top: auto;
     outline: none;
@@ -148,7 +159,7 @@ body {
     background-color: #3a3a3c;
 }
 
-/* Scrollbar Styling */
+/* Scrollbar */
 #chat-container::-webkit-scrollbar {
     width: 8px;
 }
@@ -158,7 +169,7 @@ body {
     border-radius: 5px;
 }
 
-/* Video Modal - Fullscreen Overlay */
+/* Video Modal */
 #video-modal {
     position: fixed;
     top: 0;
@@ -166,7 +177,7 @@ body {
     z-index: 9999;
     width: 100vw;
     height: 100vh;
-    background-color: #000; /* Dark background like FaceTime */
+    background-color: #000;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -175,7 +186,7 @@ body {
     margin: 0;
 }
 
-/* Header with Back Arrow */
+/* Video Header */
 #video-header {
     width: 100%;
     height: 60px;
@@ -191,7 +202,7 @@ body {
     z-index: 2;
 }
 
-/* Back Arrow Button */
+/* Back Button */
 #back-button {
     background: none;
     border: none;
@@ -201,7 +212,7 @@ body {
     padding: 0;
 }
 
-/* Fullscreen Vertical Video */
+/* Video Call */
 #video-call {
     flex: 1;
     width: 100%;
@@ -212,13 +223,14 @@ body {
     border: none;
 }
 
-/* Responsive Styles */
+/* Responsive */
 @media (max-width: 600px) {
     #chat-box {
         width: 100%;
         max-width: 100%;
         padding: 15px;
     }
+
     #user-input {
         width: 100%;
     }
