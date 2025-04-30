@@ -38,7 +38,7 @@
         </div>
 
         <!-- Contact Info (Avatar + Name) -->
-        <div class="flex flex-col items-center">
+        <div id="contact-card" class="flex flex-col items-center">
           <img class="avatar w-10 h-10 rounded-full object-cover" src="src/img/contact-avatar.png" alt="Avatar">
           <div class="name text-white text-sm font-semibold mt-1">Lucy Bloomfield</div>
         </div>
@@ -50,6 +50,25 @@
           </button>
         </div>
       </div>
+
+      <!-- Contact Modal (Initially hidden) -->
+    <div id="contact-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full relative text-center">
+        <button id="close-contact-modal" class="absolute top-2 right-2 text-gray-600 hover:text-black text-xl">&times;</button>
+        <img src="src/img/contact-avatar.png" alt="Lucy Bloomfield" class="w-24 h-24 rounded-full mx-auto mb-4">
+        <h2 class="text-xl font-bold mb-2">Lucy Bloomfield</h2>
+        <p class="mb-4 text-gray-600">Follow me:</p>
+        <div class="flex justify-center space-x-4 text-xl">
+            <a href="https://your-substack-url" target="_blank" title="Substack">📰</a>
+            <a href="https://instagram.com/yourhandle" target="_blank" title="Instagram">📸</a>
+            <a href="https://tiktok.com/@yourhandle" target="_blank" title="TikTok">🎵</a>
+            <a href="https://twitter.com/yourhandle" target="_blank" title="Twitter">🐦</a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" title="LinkedIn">💼</a>
+            <a href="https://youtube.com/@yourchannel" target="_blank" title="YouTube">📺</a>
+        </div>
+        </div>
+    </div>
+  
 
       <!-- Chat Area -->
       <div id="chat" class="flex-1 overflow-y-auto space-y-4"></div>

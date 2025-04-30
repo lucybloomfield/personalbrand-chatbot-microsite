@@ -140,3 +140,14 @@ function updateTime() {
     document.getElementById("videoModal").classList.add("hidden");
     document.getElementById("chat-container").style.display = "flex";
   });
+
+  // Video Call Button Logic (Open Video Modal)
+  document.getElementById("contact-card").addEventListener("click", function() {
+    document.getElementById("contact-modal").classList.remove("hidden");
+  });
+
+  // Close Modal Logic
+  document.getElementById("close-contact-modal").addEventListener("click", function() {
+    document.getElementById("contact-modal").classList.add("hidden");
+    document.getElementById("chat-container").style.display = "flex";
+  });
