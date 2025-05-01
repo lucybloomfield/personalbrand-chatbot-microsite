@@ -132,7 +132,9 @@ function updateTime() {
 
   // Video Call Button Logic (Open Video Modal)
   document.getElementById("video-call-button").addEventListener("click", function() {
+    // Hide the previous screen and show the video screen
     document.getElementById("videoModal").classList.remove("hidden");
+    document.getElementById("videoModal").style.display = "flex";
   });
 
   // Close Modal Logic
