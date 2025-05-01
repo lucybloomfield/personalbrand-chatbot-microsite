@@ -26,7 +26,7 @@ function showNextMessage() {
       removeTypingIndicator();
 
       const messageDiv = document.createElement('div');
-      messageDiv.classList.add('animate__animated', 'animate__fadeInUp', 'p-4', 'bg-gray-100', 'rounded-lg', 'max-w-xs', 'mb-4', 'bot', 'w-full', 'text-left');
+      messageDiv.classList.add('p-4', 'bg-gray-100', 'rounded-lg', 'max-w-xs', 'mb-4', 'bot', 'w-full', 'text-left');
       messageDiv.textContent = chatbotMessages[currentMessage];
       chatBox.appendChild(messageDiv);
       currentMessage++;
@@ -44,7 +44,7 @@ function handleUserMessage(input) {
   messageWrapperDiv.classList.add('flex', 'w-full', 'mb-4'); // Align to the right
 
   const messageDiv = document.createElement('div');
-  messageDiv.classList.add('animate__animated', 'animate__fadeInUp', 'p-4', 'bg-blue-500', 'text-white', 'rounded-lg', 'max-w-xs', 'user');
+  messageDiv.classList.add('p-4', 'bg-blue-500', 'text-white', 'rounded-lg', 'max-w-xs', 'user');
   messageDiv.textContent = input;
 
   messageWrapperDiv.appendChild(messageDiv); // Wrap the bubble inside the full-width div
@@ -79,11 +79,21 @@ function showForm() {
 // Function to show Typing... indicator
 function showTypingIndicator() {
   typingDiv = document.createElement('div');
-  typingDiv.classList.add('animate__animated', 'animate__fadeInUp', 'p-4', 'bg-gray-700', 'text-white', 'rounded-lg', 'max-w-xs', 'mb-4', 'w-full', 'text-left', 'typing-indicator');
-  typingDiv.textContent = '...';
+  typingDiv.classList.add('text-left', 'typingIndicatorBubble');
+  const dotSpan1 = document.createElement('span');
+  dotSpan1.classList.add('typingIndicatorBubbleDot');
+  const dotSpan2 = document.createElement('span');
+  dotSpan2.classList.add('typingIndicatorBubbleDot');
+  const dotSpan3 = document.createElement('span');
+  dotSpan3.classList.add('typingIndicatorBubbleDot');
+
+  typingDiv.appendChild(dotSpan1);
+  typingDiv.appendChild(dotSpan2);
+  typingDiv.appendChild(dotSpan3);
   chatBox.appendChild(typingDiv);
   chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to latest
 }
+
 
 // Function to remove the Typing... indicator
 function removeTypingIndicator() {
