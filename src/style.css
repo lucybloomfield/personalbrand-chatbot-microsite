@@ -285,17 +285,12 @@ body {
 
 /* Input Field */
 #user-input {
-    background-color: #2c2c2e;
+    background: linear-gradient(#2F273F, #1A0F1A);
     color: #fff;
     border: none;
     padding: 14px 20px;
-    border-radius: 25px;
-    width: 100%;
-    font-size: 16px;
-    margin-top: auto;
+    border-radius: 20px;
     outline: none;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    transition: background-color 0.3s;
 }
 
 #user-input::placeholder {
