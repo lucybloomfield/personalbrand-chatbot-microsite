@@ -226,6 +226,7 @@ body {
 .bot {
     text-align: left;
     margin-right: auto;
+    
 }
 
 /* User Message */
@@ -254,6 +255,13 @@ body {
 
 #user-input:focus {
     background-color: #3a3a3c;
+}
+
+/* Contact Modal Inner */
+#contact-inner-div {
+    box-shadow: 20px 0px 20px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(#1A0F1A, #2F273F);
+    border-radius: 30px;
 }
 
 /* Video Modal */
