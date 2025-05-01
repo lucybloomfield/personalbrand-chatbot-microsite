@@ -194,7 +194,7 @@ body {
 }
 
 #chat-container {
-    padding:0 10px 10px 10px;
+    padding:0 7px 10px 7px;
 }
 
 /* Scrollbar */
@@ -216,7 +216,7 @@ body {
     display: inline-block;
     font-size: 14px;
     line-height: 1.5;
-    background-color: #007aff;
+    background: linear-gradient(60deg, #2F273F, #251B2D);
     color: #fff;
     position: relative;
     max-width: 70%;
