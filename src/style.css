@@ -152,7 +152,7 @@ body {
     font-weight: bold;
     color: white;
     padding: 15px 20px;
-    background-color: #181818;
+    background: linear-gradient(#1A0F1A, #2F273F);
     border-radius: 10px;
     margin-bottom: 15px;
     display: flex;
