@@ -3,14 +3,12 @@ const userInput = document.getElementById('user-input');
 
 const chatbotMessages = [
     "Hey, I’m Lucy 👋",
-    "I help growth-stage and established brands solve marketing, sales, and performance problems.",
-    "Sometimes that means building campaigns. Sometimes it's 1:1 advisory or team training. Occasionally, I make content. Depends on what is most likely to move the needle (for you).",
+    "I build eCommerce marketing products designed to replace me — tools that help founders scale without agencies or freelancers.",
     "A bit about me:",
     "📦 Helped AusPost launch Fulfilio, their premium 3PL offer",
     "🧴 Took my first skincare brand from 0 to 10,000 customers in 18 months",
     "💼 Built a marketing services company from 0 to $100k/month",
-    "🍰 Helped Brunetti Oro double and triple seasonal revenue",
-    "Right now, I'm open to the right briefs - consulting, content, strategy, or something else — drop it below 👇",
+    "Right now, I’m open to the right briefs — consulting, content, strategy, or software — drop yours below 👇",
   ];  
 
 let currentMessage = 0;
