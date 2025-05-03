@@ -133,17 +133,35 @@ body {
 
 /* Phone Container  */
 .phone-container {
-    height: 100%;
+    height: 98%;
     max-width: 500px;
     display: flex;
     flex-direction: column;
     flex: 1;
     border-radius: 30px;
-    padding:0;  
+    padding: 0;  
     margin:0 auto;
     background: linear-gradient(#1A0F1A, #2F273F);
     box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
     border: 10px solid #1A0F1A;
+}
+
+/*Home Screen*/
+#home-screen {
+    padding: 15px 20px;
+    background: linear-gradient(#1A0F1A, #2F273F);
+    border-radius: 30px;
+    align-items: center;
+    justify-content: space-between;
+    height:100%;
+}
+
+#status-bar {
+    padding: 70px;
+}
+
+#back-to-chat {
+    background: linear-gradient(#1A0F1A, #2F273F);
 }
 
 /* Chat Header */
@@ -291,6 +309,7 @@ body {
     padding: 14px 20px;
     border-radius: 20px;
     outline: none;
+    margin: 0 0 15px 0;
 }
 
 #user-input::placeholder {
@@ -308,7 +327,7 @@ body {
     border-radius: 30px;
 }
 
-/* Video Modal */
+/* Video Modal
 #video-modal {
     position:fixed;
     top:0;
@@ -317,7 +336,7 @@ body {
     background-color: #000;
     display: flex;
     flex-direction: column;
-}
+}*/
 
 /* Responsive */
 @media (max-width: 600px) {
