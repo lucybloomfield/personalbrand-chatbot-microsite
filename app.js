@@ -153,7 +153,7 @@ function updateTime() {
   document.getElementById("video-back-button").addEventListener("click", function() {
     document.getElementById("videoModal").classList.add("hidden");
     document.getElementById("chat-container").style.display = "flex";
-  });
+  });*/
 
   // Video Call Button Logic (Open Video Modal)
   document.getElementById("contact-card").addEventListener("click", function() {
@@ -164,4 +164,4 @@ function updateTime() {
   document.getElementById("close-contact-modal").addEventListener("click", function() {
     document.getElementById("contact-modal").classList.add("hidden");
     document.getElementById("chat-container").style.display = "flex";
-  });*/
+  });
