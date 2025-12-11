@@ -1,167 +1,253 @@
-const chatBox = document.getElementById('chat');
-const userInput = document.getElementById('user-input');
+// Initialize Stripe
+// NOTE: Replace with your actual Stripe publishable key
+// For production, use your live key. For testing, use your test key.
+const STRIPE_PUB_KEY = 'pk_live_YOUR_STRIPE_PUBLISHABLE_KEY'; // Change to your Stripe key
+const stripe = STRIPE_PUB_KEY && STRIPE_PUB_KEY.includes('pk_') 
+  ? Stripe(STRIPE_PUB_KEY) 
+  : null;
 
-const chatbotMessages = [
-    "Hey, I’m Lucy 👋",
-    "I build eCommerce marketing products designed to replace me — tools that help founders scale without agencies or freelancers.",
-    "A bit about me:",
-    "📦 Helped AusPost launch Fulfilio, their premium 3PL offer",
-    "🧴 Took my first skincare brand from 0 to 10,000 customers in 18 months",
-    "💼 Built a marketing services company from 0 to $100k/month",
-    "Right now, I’m open to the right briefs — consulting, content, strategy, or software — drop yours below 👇",
-  ];  
-
-let currentMessage = 0;
-let typingDiv = null; // Variable to hold the typing indicator
-
-// Function to animate the chat messages
-function showNextMessage() {
-  if (currentMessage < chatbotMessages.length) {
-    showTypingIndicator();
-
-    // Delay before showing the next message
-    setTimeout(() => {
-      removeTypingIndicator();
-
-      const messageDiv = document.createElement('div');
-      messageDiv.classList.add('p-4', 'bg-gray-100', 'rounded-lg', 'max-w-xs', 'mb-4', 'bot', 'w-full', 'text-left');
-      messageDiv.textContent = chatbotMessages[currentMessage];
-      chatBox.appendChild(messageDiv);
-      currentMessage++;
-      chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to the latest message
-    }, 1000); // 1 second delay for "Lucy is typing..."
-  } else {
-    // After the last message, show the form
-    showForm();
+// Datafast tracking helper
+function trackEvent(eventName, eventData = {}) {
+  if (typeof window.datafast !== 'undefined') {
+    window.datafast('track', eventName, eventData);
   }
+  // Also log for debugging
+  console.log('Event tracked:', eventName, eventData);
 }
 
-// Function to handle user message submission
-function handleUserMessage(input) {
-  const messageWrapperDiv = document.createElement('div');
-  messageWrapperDiv.classList.add('flex', 'w-full', 'mb-4'); // Align to the right
+// Track page view on load
+document.addEventListener('DOMContentLoaded', function() {
+  trackEvent('pageview', {
+    page: window.location.pathname,
+    timestamp: new Date().toISOString()
+  });
 
-  const messageDiv = document.createElement('div');
-  messageDiv.classList.add('p-4', 'bg-blue-500', 'text-white', 'rounded-lg', 'max-w-xs', 'user');
-  messageDiv.textContent = input;
+  // Ensure Magic Marketer links have ref=Lucy parameter
+  ensureMagicMarketerRefs();
 
-  messageWrapperDiv.appendChild(messageDiv); // Wrap the bubble inside the full-width div
-  chatBox.appendChild(messageWrapperDiv);
-  userInput.value = ''; // Clear input field
-  chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to the latest message
-  // Proceed to show bot message after user message
-  showNextMessage();
-}
+  // Track email link clicks
+  initEmailTracking();
 
-// Function to show the form at the end of the chat
-function showForm() {
-    const formDiv = document.createElement('div');
-    formDiv.classList.add(
-      'animate__animated', 'animate__fadeInUp', 'p-4',
-      'bg-gray-100', 'rounded-lg', 'max-w-xs', 'bot',
-      'w-full', 'text-left', 'mb-4'
-    );
+  // Initialize Stripe checkout
+  initStripeCheckout();
+
+  // Initialize tab switching
+  initTabs();
+
+  // Initialize smooth scroll for anchor links
+  initSmoothScroll();
+});
+
+// Ensure all Magic Marketer links have ref=Lucy
+function ensureMagicMarketerRefs() {
+  const magicMarketerLinks = document.querySelectorAll('a[href*="magicmarketer.com"]');
+  
+  magicMarketerLinks.forEach(link => {
+    const url = new URL(link.href);
+    if (!url.searchParams.has('ref')) {
+      url.searchParams.set('ref', 'Lucy');
+      link.href = url.toString();
+    }
     
-    formDiv.innerHTML = `
-      <a href="https://forms.gle/QwjRBpT1SiB6RDFu9" 
-         target="_blank" 
-         class="inline-block w-full text-center text-white p-2 rounded transition">
-        Submit Your Project Brief
-      </a>
-    `;
-  
-    chatBox.appendChild(formDiv);
-  }
-  
-
-// Function to show Typing... indicator
-function showTypingIndicator() {
-  typingDiv = document.createElement('div');
-  typingDiv.classList.add('text-left', 'typingIndicatorBubble');
-  const dotSpan1 = document.createElement('span');
-  dotSpan1.classList.add('typingIndicatorBubbleDot');
-  const dotSpan2 = document.createElement('span');
-  dotSpan2.classList.add('typingIndicatorBubbleDot');
-  const dotSpan3 = document.createElement('span');
-  dotSpan3.classList.add('typingIndicatorBubbleDot');
-
-  typingDiv.appendChild(dotSpan1);
-  typingDiv.appendChild(dotSpan2);
-  typingDiv.appendChild(dotSpan3);
-  chatBox.appendChild(typingDiv);
-  chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to latest
+    // Track clicks on Magic Marketer links
+    link.addEventListener('click', function() {
+      trackEvent('magic_marketer_link_click', {
+        source: this.textContent.trim(),
+        url: this.href
+      });
+    });
+  });
 }
 
-
-// Function to remove the Typing... indicator
-function removeTypingIndicator() {
-  if (typingDiv) {
-    chatBox.removeChild(typingDiv);
-    typingDiv = null;
-  }
+// Track email link clicks
+function initEmailTracking() {
+  const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
+  
+  emailLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      trackEvent('email_link_click', {
+        email: this.href.replace('mailto:', '').split('?')[0],
+        source: this.textContent.trim()
+      });
+    });
+  });
 }
 
-// Start the chat when the page loads
-showNextMessage();
+// Initialize Stripe checkout for book purchase
+function initStripeCheckout() {
+  const buyBookBtn = document.getElementById('buy-book-btn');
+  const paymentModal = document.getElementById('payment-modal');
+  const closeModal = document.querySelector('.close-modal');
 
-// Listen for user input submission
-userInput.addEventListener('keypress', function(event) {
-  if (event.key === 'Enter' && userInput.value.trim()) {
-    handleUserMessage(userInput.value.trim());
+  if (!buyBookBtn) return;
+
+  if (!stripe) {
+    buyBookBtn.textContent = 'Book Coming Soon';
+    buyBookBtn.disabled = true;
+    console.warn('Stripe not initialized. Please add your Stripe publishable key.');
+    return;
+  }
+
+  buyBookBtn.addEventListener('click', async function() {
+    // Track book purchase intent
+    trackEvent('book_purchase_intent');
+
+    // Show loading state
+    const originalText = buyBookBtn.textContent;
+    buyBookBtn.textContent = 'Loading...';
+    buyBookBtn.disabled = true;
+
+    try {
+      // Create Stripe checkout session
+      // NOTE: You'll need to set up a backend endpoint to create the checkout session
+      const response = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          product: 'book',
+          successUrl: window.location.origin + '/success?session_id={CHECKOUT_SESSION_ID}',
+          cancelUrl: window.location.origin + '#work-together'
+        })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || 'Failed to create checkout session');
+      }
+
+      const { sessionId } = await response.json();
+
+      if (!sessionId) {
+        throw new Error('No session ID returned');
+      }
+
+      // Redirect to Stripe Checkout
+      const { error } = await stripe.redirectToCheckout({ sessionId });
+
+      if (error) {
+        throw error;
+      }
+
+      trackEvent('book_checkout_started');
+
+    } catch (error) {
+      console.error('Error creating checkout session:', error);
+      
+      // Reset button
+      buyBookBtn.textContent = originalText;
+      buyBookBtn.disabled = false;
+      
+      // Show user-friendly error
+      alert('Sorry, there was an error setting up the checkout. Please try again later or contact me directly.');
+      
+      trackEvent('book_checkout_error', {
+        error: error.message
+      });
+    }
+  });
+
+  // Close modal
+  if (closeModal) {
+    closeModal.addEventListener('click', function() {
+      paymentModal.classList.add('hidden');
+    });
+  }
+
+  // Close modal when clicking outside
+  paymentModal.addEventListener('click', function(e) {
+    if (e.target === paymentModal) {
+      paymentModal.classList.add('hidden');
+    }
+  });
+}
+
+// Initialize tab switching
+function initTabs() {
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const targetTab = this.getAttribute('data-tab');
+
+      // Remove active class from all buttons and panels
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      tabPanels.forEach(panel => panel.classList.remove('active'));
+
+      // Add active class to clicked button
+      this.classList.add('active');
+
+      // Show corresponding panel
+      const targetPanel = document.getElementById(targetTab + '-tab');
+      if (targetPanel) {
+        targetPanel.classList.add('active');
+        
+        // Track tab switch
+        trackEvent('library_tab_switch', {
+          tab: targetTab
+        });
+      }
+    });
+  });
+}
+
+// Initialize smooth scroll for anchor links
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href === '#' || href === '') return;
+
+      e.preventDefault();
+      const target = document.querySelector(href);
+      
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+
+        // Track navigation
+        trackEvent('anchor_link_click', {
+          target: href
+        });
+      }
+    });
+  });
+}
+
+// Track scroll depth (optional enhancement)
+let maxScroll = 0;
+window.addEventListener('scroll', function() {
+  const scrollPercent = Math.round(
+    (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+  );
+
+  if (scrollPercent > maxScroll) {
+    maxScroll = scrollPercent;
+    
+    // Track milestones
+    if (scrollPercent >= 25 && scrollPercent < 50) {
+      trackEvent('scroll_depth', { depth: 25 });
+    } else if (scrollPercent >= 50 && scrollPercent < 75) {
+      trackEvent('scroll_depth', { depth: 50 });
+    } else if (scrollPercent >= 75 && scrollPercent < 100) {
+      trackEvent('scroll_depth', { depth: 75 });
+    } else if (scrollPercent >= 100) {
+      trackEvent('scroll_depth', { depth: 100 });
+    }
   }
 });
 
-
-function updateTime() {
-    const timeElement = document.getElementById("time");
-    const now = new Date().toLocaleTimeString('en-AU', {
-      timeZone: 'Australia/Adelaide',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: false  // use true if you want AM/PM
+// Track external link clicks
+document.addEventListener('click', function(e) {
+  const link = e.target.closest('a');
+  if (link && link.hostname !== window.location.hostname) {
+    trackEvent('external_link_click', {
+      url: link.href,
+      text: link.textContent.trim()
     });
-  
-    timeElement.textContent = now;
   }
-
-  setInterval(updateTime, 1000); // Update every second
-
-  // Back Button Logic (Go to Home Screen)
-  document.getElementById("messages-back-button").addEventListener("click", function() {
-    // Hide the chat screen and show the home screen
-    document.getElementById("chat-container").style.display = "none";
-    document.getElementById("home-screen").style.display = "flex";
-  });
-
-  // Back to Chat Button Logic (Return to the chat screen)
-  document.getElementById("back-to-chat").addEventListener("click", function() {
-    // Hide the home screen and show the chat screen
-    document.getElementById("home-screen").style.display = "none";
-    document.getElementById("chat-container").style.display = "flex";
-  });
-
-  /*
-  // Video Call Button Logic (Open Video Modal)
-  document.getElementById("video-call-button").addEventListener("click", function() {
-    // Hide the previous screen and show the video screen
-    document.getElementById("videoModal").classList.remove("hidden");
-    document.getElementById("videoModal").style.display = "flex";
-  });
-
-  // Close Modal Logic
-  document.getElementById("video-back-button").addEventListener("click", function() {
-    document.getElementById("videoModal").classList.add("hidden");
-    document.getElementById("chat-container").style.display = "flex";
-  });*/
-
-  // Video Call Button Logic (Open Video Modal)
-  document.getElementById("contact-card").addEventListener("click", function() {
-    document.getElementById("contact-modal").classList.remove("hidden");
-  });
-
-  // Close Modal Logic
-  document.getElementById("close-contact-modal").addEventListener("click", function() {
-    document.getElementById("contact-modal").classList.add("hidden");
-    document.getElementById("chat-container").style.display = "flex";
-  });
+});

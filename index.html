@@ -3,121 +3,350 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lucy Bloomfield | eCommerce Marketing Tech Products</title>
-  <meta name="description" content="I build marketing products that replace me. Follow along as I code eCommerce tech that helps founders scale without outsourcing." />
+  
+  <!-- Primary Meta Tags -->
+  <title>Lucy Bloomfield | Building Magic Marketer</title>
+  <meta name="title" content="Lucy Bloomfield | Building Magic Marketer">
+  <meta name="description" content="D2C & CPG marketing expert with over a decade of experience building the best marketing automation software, Magic Marketer.">
+  <meta name="keywords" content="Shopify marketing expert, eCommerce growth strategist, D2C growth expert, product business growth, Shopify growth consultant, Magic Marketer, eCommerce marketing, AI marketing tools, Shopify consulting, retail marketing">
+  <meta name="author" content="Lucy Bloomfield">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://lucybloomfield.com.au">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lucybloomfield.com.au">
+  <meta property="og:title" content="Lucy Bloomfield | Building Magic Marketer">
+  <meta property="og:description" content="D2C & CPG marketing expert with over a decade of experience building the best marketing automation software, Magic Marketer.">
+  <meta property="og:image" content="https://lucybloomfield.com.au/src/img/og-image.jpg">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://lucybloomfield.com.au">
+  <meta property="twitter:title" content="Lucy Bloomfield | Building Magic Marketer">
+  <meta property="twitter:description" content="D2C & CPG marketing expert with over a decade of experience building the best marketing automation software, Magic Marketer.">
+  <meta property="twitter:image" content="https://lucybloomfield.com.au/src/img/twitter-image.jpg">
+  
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Lucy Bloomfield",
+    "jobTitle": "Building Magic Marketer",
+    "url": "https://lucybloomfield.com.au",
+    "sameAs": [
+      "https://www.linkedin.com/in/lucy-bloomfield-b29b1910a/",
+      "https://instagram.com/lucybloomfieldofficial",
+      "https://www.youtube.com/@lucybloomfieldofficial",
+      "https://lucybloomfieldofficial.substack.com/"
+    ],
+    "knowsAbout": ["eCommerce Marketing", "Shopify", "Digital Marketing", "AI Marketing Tools", "Business Growth", "D2C Marketing", "CPG Marketing", "Marketing Automation"],
+    "description": "D2C & CPG marketing expert with over a decade of experience building the best marketing automation software, Magic Marketer.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Adelaide",
+      "addressCountry": "AU"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Lucy Bloomfield - Building Magic Marketer",
+    "description": "D2C & CPG marketing expert with over a decade of experience building the best marketing automation software, Magic Marketer",
+    "url": "https://lucybloomfield.com.au",
+    "serviceType": ["eCommerce Consulting", "Shopify Marketing", "Digital Marketing Strategy", "Speaking"],
+    "areaServed": "Worldwide"
+  }
+  </script>
+  
   <link href="src/style.css" rel="stylesheet">
   <link href="dist/output.css" rel="stylesheet">
+  <!-- Stripe.js -->
+  <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
-    <div class="animation-wrapper">
-        <div class="particle particle-1"></div>
-        <div class="particle particle-2"></div>
-        <div class="particle particle-3"></div>
-        <div class="particle particle-4"></div>
+  <!-- Header Section -->
+  <header class="site-header">
+    <nav class="header-nav">
+      <div class="nav-brand">LUCY BLOOMFIELD</div>
+      <div class="nav-links">
+        <a href="https://magicmarketer.com?ref=Lucy" target="_blank" class="cta-button" id="magic-marketer-nav-link">TRY MAGIC MARKETER</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-headline">Marketing brands online since 2015</h1>
+          
+          <!-- As Seen In logos -->
+          <div class="hero-logos-container">
+            <div class="scrolling-container">
+              <div class="scrolling-content">
+        <!-- First set for seamless loop -->
+        <div class="brand-box">Deakin University</div>
+        <div class="brand-box">Like Minded Bitches Drinking Wine</div>
+        <div class="brand-box">Marie Claire</div>
+        <div class="brand-box">Medium</div>
+        <div class="brand-box">Priceline</div>
+        <div class="brand-box">SHE-com</div>
+        <div class="brand-box">Product Hunt</div>
+        <div class="brand-box">Jodie Minto</div>
+        <div class="brand-box">Reddit</div>
+        <div class="brand-box">Starter Story</div>
+        <div class="brand-box">Got Marketing?</div>
+        <div class="brand-box">RMIT University</div>
+        <div class="brand-box">Malouf Pharmacies</div>
+        <div class="brand-box">Salena Knight</div>
+        <div class="brand-box">LinkedIn</div>
+        <div class="brand-box">Gleam</div>
+        <div class="brand-box">Hacker News</div>
+        <div class="brand-box">Ashy Bines</div>
+        <div class="brand-box">eCommerce Masterplan</div>
+        <div class="brand-box">Pause Fest</div>
+        <div class="brand-box">CX Explained</div>
+        <div class="brand-box">Meta</div>
+        <div class="brand-box">Lottos</div>
+        <div class="brand-box">Ticker News</div>
+        <div class="brand-box">Pia Muehelenbeck</div>
+        <div class="brand-box">University of the Sunshine Coast</div>
+        <div class="brand-box">Indie Hackers</div>
+        <div class="brand-box">BNI</div>
+        <div class="brand-box">Chloe Thomas</div>
+        <div class="brand-box">Grow A Small Business</div>
+        <div class="brand-box">Apparel Magazine</div>
+        <div class="brand-box">Chontel Duncan</div>
+        <div class="brand-box">A Woman's Bible</div>
+        <div class="brand-box">Swinburne University of Technology</div>
+        <div class="brand-box">Clique Magazine</div>
+        <div class="brand-box">QA Ltd</div>
+        <div class="brand-box">JosephMark</div>
+        <div class="brand-box">The Design Conference</div>
+        <div class="brand-box">Security Innovation</div>
+        <!-- Duplicate set for seamless loop -->
+        <div class="brand-box">Deakin University</div>
+        <div class="brand-box">Like Minded Bitches Drinking Wine</div>
+        <div class="brand-box">Marie Claire</div>
+        <div class="brand-box">Medium</div>
+        <div class="brand-box">Priceline</div>
+        <div class="brand-box">SHE-com</div>
+        <div class="brand-box">Product Hunt</div>
+        <div class="brand-box">Jodie Minto</div>
+        <div class="brand-box">Reddit</div>
+        <div class="brand-box">Starter Story</div>
+        <div class="brand-box">Got Marketing?</div>
+        <div class="brand-box">RMIT University</div>
+        <div class="brand-box">Malouf Pharmacies</div>
+        <div class="brand-box">Salena Knight</div>
+        <div class="brand-box">LinkedIn</div>
+        <div class="brand-box">Gleam</div>
+        <div class="brand-box">Hacker News</div>
+        <div class="brand-box">Ashy Bines</div>
+        <div class="brand-box">eCommerce Masterplan</div>
+        <div class="brand-box">Pause Fest</div>
+        <div class="brand-box">CX Explained</div>
+        <div class="brand-box">Meta</div>
+        <div class="brand-box">Lottos</div>
+        <div class="brand-box">Ticker News</div>
+        <div class="brand-box">Pia Muehelenbeck</div>
+        <div class="brand-box">University of the Sunshine Coast</div>
+        <div class="brand-box">Indie Hackers</div>
+        <div class="brand-box">BNI</div>
+        <div class="brand-box">Chloe Thomas</div>
+        <div class="brand-box">Grow A Small Business</div>
+        <div class="brand-box">Apparel Magazine</div>
+        <div class="brand-box">Chontel Duncan</div>
+        <div class="brand-box">A Woman's Bible</div>
+        <div class="brand-box">Swinburne University of Technology</div>
+        <div class="brand-box">Clique Magazine</div>
+        <div class="brand-box">QA Ltd</div>
+        <div class="brand-box">JosephMark</div>
+        <div class="brand-box">The Design Conference</div>
+        <div class="brand-box">Security Innovation</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="hero-ctas">
+            <a href="https://magicmarketer.com?ref=Lucy" target="_blank" class="btn btn-primary" id="magic-marketer-link">TRY MAGIC MARKETER</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Me Section -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-content">
+        <div class="about-image-wrapper">
+          <img src="src/img/3.png" alt="Lucy Bloomfield" class="about-image">
+        </div>
+        <div class="about-text">
+          <p class="about-copy">
+            I've spent a decade making, managing and mechanizing marketing to be faster, smarter, and more profitable.
+          </p>
+          <ul class="achievement-list">
+            <li>Built my first eCommerce brand to 10k customers in 18 months.</li>
+            <li>Grew over 200 Australian-owned brands</li>
+            <li>Helped $100m Australian retail conglomerate launch new service offering</li>
+            <li>Helped $20M+ retail groups double seasonal category revenue</li>
+            <li>Created Magic Marketer - the AI-powered marketing tool for Shopify brands</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brands I've Worked On Section -->
+  <section id="brands" class="scrolling-section brands-section">
+    <div class="container">
+      <h2 class="section-title">Brands I've Worked On</h2>
+    </div>
+    <div class="scrolling-container">
+      <div class="scrolling-content brands-content">
+        <!-- First set for seamless loop -->
+        <div class="brand-box">Trefiel</div>
+        <div class="brand-box">Vegan Wares</div>
+        <div class="brand-box">AusPost</div>
+        <div class="brand-box">Brunetti Oro</div>
+        <div class="brand-box">Outland Denim</div>
+        <div class="brand-box">Bang Cookies</div>
+        <div class="brand-box">Preston Zly</div>
+        <div class="brand-box">Opening Night Supplies</div>
+        <div class="brand-box">Farm to Hanger</div>
+        <div class="brand-box">StokedNZ</div>
+        <div class="brand-box">Glamour Glasses</div>
+        <div class="brand-box">Cara Cashmere</div>
+        <div class="brand-box">House of Vimm</div>
+        <div class="brand-box">The Sports Model Project</div>
+        <div class="brand-box">Antipodean Witch</div>
+        <div class="brand-box">Boutique Heidi</div>
+        <div class="brand-box">The Mylk Society</div>
+        <div class="brand-box">High Priestess</div>
+        <!-- Duplicate set for seamless loop -->
+        <div class="brand-box">Trefiel</div>
+        <div class="brand-box">Vegan Wares</div>
+        <div class="brand-box">AusPost</div>
+        <div class="brand-box">Brunetti Oro</div>
+        <div class="brand-box">Outland Denim</div>
+        <div class="brand-box">Bang Cookies</div>
+        <div class="brand-box">Preston Zly</div>
+        <div class="brand-box">Opening Night Supplies</div>
+        <div class="brand-box">Farm to Hanger</div>
+        <div class="brand-box">StokedNZ</div>
+        <div class="brand-box">Glamour Glasses</div>
+        <div class="brand-box">Cara Cashmere</div>
+        <div class="brand-box">House of Vimm</div>
+        <div class="brand-box">The Sports Model Project</div>
+        <div class="brand-box">Antipodean Witch</div>
+        <div class="brand-box">Boutique Heidi</div>
+        <div class="brand-box">The Mylk Society</div>
+        <div class="brand-box">High Priestess</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How We Can Work Together Section -->
+  <section id="work-together" class="work-together-section">
+    <div class="container">
+      <h2 class="section-title">How We Can Work Together</h2>
+      <div class="work-options">
+        <div class="work-option">
+          <h3>1. Use Magic Marketer</h3>
+          <p>Automate and scale your eCommerce marketing - without adding stress or headcount.</p>
+          <a href="https://magicmarketer.com?ref=Lucy" target="_blank" class="btn btn-primary" id="magic-marketer-work-link">TRY MAGIC MARKETER</a>
+        </div>
+        <div class="work-option">
+          <h3>2. Book Me to Speak or Consult</h3>
+          <p>For keynotes, private workshops, and tailored growth strategy sessions.</p>
+          <a href="mailto:cash@lucybloomfield.com.au?subject=Speaking/Consulting Inquiry" class="btn btn-primary">Get In Touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Library Section -->
+  <section id="library" class="library-section">
+    <div class="container">
+      <h2 class="section-title">Library</h2>
+      <div class="library-tabs">
+        <button class="tab-btn active" data-tab="articles">Articles</button>
+        <button class="tab-btn" data-tab="videos">Videos</button>
+        <button class="tab-btn" data-tab="podcast">Podcast</button>
+      </div>
+      <div class="tab-content">
+        <div id="articles-tab" class="tab-panel active">
+          <p>Deep dives and playbooks you can use today.</p>
+          <!-- Articles content will go here -->
+        </div>
+        <div id="videos-tab" class="tab-panel">
+          <p>Walkthroughs, demos, and teardowns.</p>
+          <!-- Videos content will go here -->
+        </div>
+        <div id="podcast-tab" class="tab-panel">
+          <p>Interviews with founders and operators doing the work.</p>
+          <!-- Podcast content will go here -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="copyright">Copyright © 2025 Lucy Bloomfield</p>
+      <div class="footer-links">
+        <a href="#privacy">Privacy Policy</a>
+        <span>•</span>
+        <a href="#terms">Terms</a>
+      </div>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/lucy-bloomfield-b29b1910a/" target="_blank" aria-label="LinkedIn">LinkedIn</a>
+        <a href="https://instagram.com/lucybloomfieldofficial" target="_blank" aria-label="Instagram">Instagram</a>
+        <a href="https://www.youtube.com/@lucybloomfieldofficial" target="_blank" aria-label="YouTube">YouTube</a>
+        <a href="https://lucybloomfieldofficial.substack.com/" target="_blank" aria-label="Substack">Substack</a>
+      </div>
+      <p class="footer-note">Magic Marketer is a registered trademark.</p>
+    </div>
+  </footer>
+
+  <!-- Stripe Payment Modal (for book purchase) -->
+  <div id="payment-modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2>Buy My Book</h2>
+      <div id="checkout-container"></div>
+    </div>
+  </div>
+
+  <!-- Datafast Tracking Script -->
+  <script>
+    // Initialize Datafast tracking
+    // Replace with your actual Datafast script tag from https://datafa.st/dashboard/689e895fdd54c989568c688f
+    (function() {
+      // Datafast tracking initialization
+      window.datafast = window.datafast || function() {
+        (window.datafast.q = window.datafast.q || []).push(arguments);
+      };
       
-
-  <!-- 📱 Phone Container wraps all views -->
-  <div class="phone-container">
-
-    <!-- 🏠 Home Screen -->
-    <div id="home-screen" class="hidden flex flex-col items-center justify-center">
-      <div id="status-bar" class="w-full p-2 text-white text-center">
-        <h1 id="time" style="font-size:40px"></h1>
-        <p>Adelaide, Australia</p>
-      </div>
-      <div class="flex flex-col items-center mt-10">
-        <button id="back-to-chat" class="text-white s rounded-lg text-lg">
-          💬 Return to Chat
-        </button>
-      </div>
-    </div>
-
-    <!-- 💬 Chat Screen -->
-    <div id="chat-container" class="flex justify-center items-center min-h-screen w-full">
-      <div id="chat-box" class="rounded-lg p-4 w-full max-w-xl shadow-lg flex flex-col h-full">
-
-        <!-- Contact Card -->
-        <div id="chat-header" class="flex items-center justify-between p-4 rounded-lg mb-4">
-          <div class="flex items-center gap-2">
-            <button id="messages-back-button" class="text-white text-2xl">&#8592;</button>
-          </div>
-          <div id="contact-card" class="flex flex-col items-center">
-            <img class="avatar w-10 h-10 rounded-full object-cover" src="src/img/contact-avatar.jpg" alt="Avatar">
-            <div class="name text-white text-sm font-semibold mt-1">Lucy Bloomfield</div>
-          </div>
-          <div class="flex items-center gap-2">
-            <!--<button id="video-call-button" class="text-white text-2xl">[◉°]</button> -->
-            <p></p>
-          </div>
-        </div>
-
-        <!-- Contact Modal -->
-        <div id="contact-modal" class="hidden fixed inset-0 flex justify-center items-center z-50">
-            <div id="contact-inner-div" class="p-6 rounded-lg shadow-lg max-w-sm w-full relative text-center bg-black text-white">
-            <button id="close-contact-modal" class="absolute top-2 right-2 text-xl">&times;</button>
-            <img src="src/img/contact-avatar.jpg" alt="Lucy Bloomfield" class="w-24 h-24 rounded-full mx-auto mb-4">
-            <h2 class="text-xl mb-2">Enjoy my content</h2>
-        
-            <div class="space-y-4 text-left text-base">
-                <a href="https://lucybloomfieldofficial.substack.com/" target="_blank" class="flex items-start gap-2">
-                <span class="text-xl">📰</span>
-                <span>Subtack: long-form free + paid written content on the moon, women's hormones & money.</span>
-                </a>
-        
-                <a href="https://instagram.com/lucybloomfieldofficial" target="_blank" class="flex items-start gap-2">
-                <span class="text-xl">📸</span>
-                <span>Instagram: art, updates and concepts.</span>
-                </a>
-        
-                <a href="https://www.tiktok.com/@lucybloomfield" target="_blank" class="flex items-start gap-2">
-                <span class="text-xl">🎵</span>
-                <span>TikTok: Quick thoughts on the moon, women's hormone & money.</span>
-                </a>
-        
-                <a href="https://x.com/reallbloomfield" target="_blank" class="flex items-start gap-2">
-                <span class="text-xl">🐦</span>
-                <span>X: Watch me code my next tech product.</span>
-                </a>
-        
-                <a href="https://www.linkedin.com/in/lucy-bloomfield-b29b1910a/" target="_blank" class="flex items-start gap-2">
-                <span class="text-xl">💼</span>
-                <span>LinkedIn: Professional updates.</span>
-                </a>
-        
-                <a href="https://www.youtube.com/@lucybloomfieldofficial" target="_blank" class="flex items-start gap-2">
-                <span class="text-xl">📺</span>
-                <span>YouTube: Talks, trainings and deep dives into projects.</span>
-                </a>
-            </div>
-            </div>
-        </div>
-  
-
-        <!-- Chat Area -->
-        <div id="chat" class="flex-1 overflow-y-auto space-y-4"></div>
-
-        <!-- Input -->
-        <div id="input-area" class="pt-4">
-          <input id="user-input" type="text" class="w-full p-2 border rounded" placeholder="Type here..." autofocus />
-        </div>
-      </div>
-    </div>
-
-    <!-- 📹 Video Modal-->
-
-    <!--<div id="videoModal" class="hidden flex flex-col items-center justify-center min-h-screen">
-        <div>
-          <button id="closeModalBtn">&times;</button>
-          <div id="video-modal">
-            <div id="video-header">
-              <button id="video-back-button">←</button>
-            </div>
-            <video id="video-call" autoplay muted playsinline></video>
-          </div>
-        </div>-->
-
-    </div> <!-- End of phone-container -->
-    </div><!-- End of animation-wrapper + background particles -->
+      // Load Datafast script
+      // You should replace this with the actual script tag from your Datafast dashboard
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://datafa.st/script.js'; // Replace with actual Datafast script URL
+      script.setAttribute('data-project-id', '689e895fdd54c989568c688f');
+      var firstScript = document.getElementsByTagName('script')[0];
+      firstScript.parentNode.insertBefore(script, firstScript);
+    })();
+  </script>
 
   <script src="app.js"></script>
 </body>
