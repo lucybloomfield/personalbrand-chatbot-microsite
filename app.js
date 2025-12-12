@@ -36,6 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Initialize smooth scroll for anchor links
   initSmoothScroll();
+
+  // Initialize magic star effect
+  initMagicStars();
 });
 
 // Ensure all Magic Marketer links have ref=Lucy
@@ -251,3 +254,82 @@ document.addEventListener('click', function(e) {
     });
   }
 });
+
+// Initialize magic star effect
+function initMagicStars() {
+  const magicElements = document.querySelectorAll('.magic');
+  
+  magicElements.forEach(magic => {
+    const magicText = magic.querySelector('.magic-text');
+    if (!magicText) return;
+
+    // Get existing star or create one
+    let star = magic.querySelector('.magic-star');
+    if (!star) {
+      star = document.createElement('span');
+      star.className = 'magic-star';
+      star.innerHTML = `
+        <svg viewBox="0 0 512 512">
+          <path d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z" />
+        </svg>
+      `;
+      magic.insertBefore(star, magicText);
+    }
+
+    // Function to position star randomly around the text
+    const positionStarRandomly = () => {
+      const textRect = magicText.getBoundingClientRect();
+      const magicRect = magic.getBoundingClientRect();
+      
+      // Get text dimensions relative to magic container
+      const textLeft = textRect.left - magicRect.left;
+      const textTop = textRect.top - magicRect.top;
+      const textWidth = textRect.width;
+      const textHeight = textRect.height;
+      
+      // Random position around the text (within a padding area)
+      const padding = 30; // pixels of padding around text
+      const minX = textLeft - padding;
+      const maxX = textLeft + textWidth + padding;
+      const minY = textTop - padding;
+      const maxY = textTop + textHeight + padding;
+      
+      const randomX = Math.random() * (maxX - minX) + minX;
+      const randomY = Math.random() * (maxY - minY) + minY;
+      
+      star.style.setProperty('--star-left', `${randomX}px`);
+      star.style.setProperty('--star-top', `${randomY}px`);
+      star.style.display = 'block';
+      star.style.opacity = '0';
+      
+      // Trigger scale animation
+      star.style.animation = 'none';
+      setTimeout(() => {
+        star.style.opacity = '0.8';
+        star.style.animation = 'scale 400ms ease forwards, rotate 1000ms linear infinite';
+      }, 10);
+      
+      // Hide star after a short duration (300-600ms)
+      const visibleDuration = Math.random() * 300 + 300; // 300-600ms
+      setTimeout(() => {
+        star.style.opacity = '0';
+        star.style.transition = 'opacity 200ms ease';
+      }, visibleDuration);
+    };
+
+    // Initial position
+    positionStarRandomly();
+
+    // Reposition star at random intervals (between 400-800ms for faster flashing)
+    const scheduleNextStar = () => {
+      const delay = Math.random() * 400 + 400; // 400-800ms
+      setTimeout(() => {
+        positionStarRandomly();
+        scheduleNextStar();
+      }, delay);
+    };
+
+    // Start the random interval loop
+    scheduleNextStar();
+  });
+}
