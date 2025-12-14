@@ -66,6 +66,13 @@
   <link href="dist/output.css" rel="stylesheet">
   <!-- Stripe.js -->
   <script src="https://js.stripe.com/v3/"></script>
+  <!-- Datafast Analytics -->
+  <script
+    defer
+    data-website-id="dfid_2hgbAOWkKhX3czvsIlYra"
+    data-domain="lucybloomfield.com.au"
+    src="https://datafa.st/js/script.js">
+  </script>
 </head>
 <body>
   <!-- Header Section -->
@@ -211,6 +218,7 @@
   <!-- Case Studies / Results Section -->
   <section id="case-studies" class="case-studies-section">
     <div class="container">
+      <!-- Desktop Grid -->
       <div class="case-studies-grid">
         <div class="case-study-card">
           <h3 class="case-study-title">Luxury Shoe Client</h3>
@@ -254,6 +262,68 @@
             </div>
           </div>
         </div>
+      </div>
+      <!-- Mobile Carousel -->
+      <div class="case-study-carousel-wrapper">
+        <div class="case-study-carousel" id="caseStudyCarousel">
+          <div class="case-study-card">
+            <h3 class="case-study-title">Luxury Shoe Client</h3>
+            <p class="case-study-description">Moved their Black Friday campaign back a week to fall under a certain moon phase.</p>
+            <div class="case-study-metrics">
+              <div class="metric">
+                <span class="metric-value">$20K</span>
+                <span class="metric-label">Additional Yield</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">0%</span>
+                <span class="metric-label">Extra Spend</span>
+              </div>
+            </div>
+          </div>
+          <div class="case-study-card">
+            <h3 class="case-study-title">Dance Industry Client</h3>
+            <p class="case-study-description">Ran 12 months of marketing campaigns centered around offers aligned with specific moon phase.</p>
+            <div class="case-study-metrics">
+              <div class="metric">
+                <span class="metric-value">$350K</span>
+                <span class="metric-label">Additional Revenue</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">0%</span>
+                <span class="metric-label">Extra Spend</span>
+              </div>
+            </div>
+          </div>
+          <div class="case-study-card">
+            <h3 class="case-study-title">Iconic Institution</h3>
+            <p class="case-study-description">Ran exact same marketing campaign 2 years in a row using specific moon phases for key launch moments.</p>
+            <div class="case-study-metrics">
+              <div class="metric">
+                <span class="metric-value">$64K</span>
+                <span class="metric-label">Additional Revenue</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">0%</span>
+                <span class="metric-label">Extra Spend</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-indicators" id="caseStudyIndicators">
+          <button class="carousel-indicator active" aria-label="Go to slide 1"></button>
+          <button class="carousel-indicator" aria-label="Go to slide 2"></button>
+          <button class="carousel-indicator" aria-label="Go to slide 3"></button>
+        </div>
+        <button class="carousel-nav carousel-prev" id="caseStudyPrev" aria-label="Previous case study">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="carousel-nav carousel-next" id="caseStudyNext" aria-label="Next case study">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
       </div>
     </div>
   </section>
@@ -416,14 +486,42 @@
   <section id="as-seen-in" class="slot-machine-section">
     <div class="container">
       <div class="slot-machine">
-        <div class="slot-column">
+        <div class="slot-column slot-column-mobile">
           <div class="slot-reel">
+            <!-- All names combined for mobile -->
             <div class="slot-item">Deakin University</div>
             <div class="slot-item">Like Minded Bitches Drinking Wine</div>
             <div class="slot-item">Marie Claire</div>
             <div class="slot-item">Medium</div>
             <div class="slot-item">Priceline</div>
             <div class="slot-item">SHE-com</div>
+            <div class="slot-item">Product Hunt</div>
+            <div class="slot-item">Reddit</div>
+            <div class="slot-item">Starter Story</div>
+            <div class="slot-item">Got Marketing?</div>
+            <div class="slot-item">RMIT University</div>
+            <div class="slot-item">Malouf Pharmacies</div>
+            <div class="slot-item">LinkedIn</div>
+            <div class="slot-item">Gleam</div>
+            <div class="slot-item">Hacker News</div>
+            <div class="slot-item">eCommerce Masterplan</div>
+            <div class="slot-item">Pause Fest</div>
+            <div class="slot-item">CX Explained</div>
+            <div class="slot-item">Meta</div>
+            <div class="slot-item">Lottos</div>
+            <div class="slot-item">Ticker News</div>
+            <div class="slot-item">University of the Sunshine Coast</div>
+            <div class="slot-item">Indie Hackers</div>
+            <div class="slot-item">BNI</div>
+            <div class="slot-item">Grow A Small Business</div>
+            <div class="slot-item">Apparel Magazine</div>
+            <div class="slot-item">A Woman's Bible</div>
+            <div class="slot-item">Swinburne University of Technology</div>
+            <div class="slot-item">Clique Magazine</div>
+            <div class="slot-item">QA Ltd</div>
+            <div class="slot-item">JosephMark</div>
+            <div class="slot-item">The Design Conference</div>
+            <div class="slot-item">Security Innovation</div>
             <!-- Duplicate for seamless loop -->
             <div class="slot-item">Deakin University</div>
             <div class="slot-item">Like Minded Bitches Drinking Wine</div>
@@ -431,6 +529,33 @@
             <div class="slot-item">Medium</div>
             <div class="slot-item">Priceline</div>
             <div class="slot-item">SHE-com</div>
+            <div class="slot-item">Product Hunt</div>
+            <div class="slot-item">Reddit</div>
+            <div class="slot-item">Starter Story</div>
+            <div class="slot-item">Got Marketing?</div>
+            <div class="slot-item">RMIT University</div>
+            <div class="slot-item">Malouf Pharmacies</div>
+            <div class="slot-item">LinkedIn</div>
+            <div class="slot-item">Gleam</div>
+            <div class="slot-item">Hacker News</div>
+            <div class="slot-item">eCommerce Masterplan</div>
+            <div class="slot-item">Pause Fest</div>
+            <div class="slot-item">CX Explained</div>
+            <div class="slot-item">Meta</div>
+            <div class="slot-item">Lottos</div>
+            <div class="slot-item">Ticker News</div>
+            <div class="slot-item">University of the Sunshine Coast</div>
+            <div class="slot-item">Indie Hackers</div>
+            <div class="slot-item">BNI</div>
+            <div class="slot-item">Grow A Small Business</div>
+            <div class="slot-item">Apparel Magazine</div>
+            <div class="slot-item">A Woman's Bible</div>
+            <div class="slot-item">Swinburne University of Technology</div>
+            <div class="slot-item">Clique Magazine</div>
+            <div class="slot-item">QA Ltd</div>
+            <div class="slot-item">JosephMark</div>
+            <div class="slot-item">The Design Conference</div>
+            <div class="slot-item">Security Innovation</div>
           </div>
         </div>
         <div class="slot-column">
@@ -568,7 +693,6 @@
               <li><a href="#about">About</a></li>
               <li><a href="#brands">Brands</a></li>
               <li><a href="#work-together">Work Together</a></li>
-              <li><a href="#library">Library</a></li>
             </ul>
           </div>
           <div class="footer-nav-column">

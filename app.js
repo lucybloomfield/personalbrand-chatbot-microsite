@@ -39,6 +39,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Initialize magic star effect
   initMagicStars();
+
+  // Initialize case study carousel (mobile)
+  initCaseStudyCarousel();
 });
 
 // Ensure all Magic Marketer links have ref=Lucy
