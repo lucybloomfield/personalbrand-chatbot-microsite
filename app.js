@@ -1,11 +1,3 @@
-// Initialize Stripe
-// NOTE: Replace with your actual Stripe publishable key
-// For production, use your live key. For testing, use your test key.
-const STRIPE_PUB_KEY = 'pk_live_YOUR_STRIPE_PUBLISHABLE_KEY'; // Change to your Stripe key
-const stripe = STRIPE_PUB_KEY && STRIPE_PUB_KEY.includes('pk_') 
-  ? Stripe(STRIPE_PUB_KEY) 
-  : null;
-
 // Datafast tracking helper
 function trackEvent(eventName, eventData = {}) {
   if (typeof window.datafast !== 'undefined') {
@@ -27,9 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Track email link clicks
   initEmailTracking();
-
-  // Initialize Stripe checkout
-  initStripeCheckout();
 
   // Initialize tab switching
   initTabs();
@@ -76,96 +65,6 @@ function initEmailTracking() {
         source: this.textContent.trim()
       });
     });
-  });
-}
-
-// Initialize Stripe checkout for book purchase
-function initStripeCheckout() {
-  const buyBookBtn = document.getElementById('buy-book-btn');
-  const paymentModal = document.getElementById('payment-modal');
-  const closeModal = document.querySelector('.close-modal');
-
-  if (!buyBookBtn) return;
-
-  if (!stripe) {
-    buyBookBtn.textContent = 'Book Coming Soon';
-    buyBookBtn.disabled = true;
-    console.warn('Stripe not initialized. Please add your Stripe publishable key.');
-    return;
-  }
-
-  buyBookBtn.addEventListener('click', async function() {
-    // Track book purchase intent
-    trackEvent('book_purchase_intent');
-
-    // Show loading state
-    const originalText = buyBookBtn.textContent;
-    buyBookBtn.textContent = 'Loading...';
-    buyBookBtn.disabled = true;
-
-    try {
-      // Create Stripe checkout session
-      // NOTE: You'll need to set up a backend endpoint to create the checkout session
-      const response = await fetch('/api/create-checkout-session', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          product: 'book',
-          successUrl: window.location.origin + '/success?session_id={CHECKOUT_SESSION_ID}',
-          cancelUrl: window.location.origin + '#work-together'
-        })
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.error || 'Failed to create checkout session');
-      }
-
-      const { sessionId } = await response.json();
-
-      if (!sessionId) {
-        throw new Error('No session ID returned');
-      }
-
-      // Redirect to Stripe Checkout
-      const { error } = await stripe.redirectToCheckout({ sessionId });
-
-      if (error) {
-        throw error;
-      }
-
-      trackEvent('book_checkout_started');
-
-    } catch (error) {
-      console.error('Error creating checkout session:', error);
-      
-      // Reset button
-      buyBookBtn.textContent = originalText;
-      buyBookBtn.disabled = false;
-      
-      // Show user-friendly error
-      alert('Sorry, there was an error setting up the checkout. Please try again later or contact me directly.');
-      
-      trackEvent('book_checkout_error', {
-        error: error.message
-      });
-    }
-  });
-
-  // Close modal
-  if (closeModal) {
-    closeModal.addEventListener('click', function() {
-      paymentModal.classList.add('hidden');
-    });
-  }
-
-  // Close modal when clicking outside
-  paymentModal.addEventListener('click', function(e) {
-    if (e.target === paymentModal) {
-      paymentModal.classList.add('hidden');
-    }
   });
 }
 
@@ -335,4 +234,105 @@ function initMagicStars() {
     // Start the random interval loop
     scheduleNextStar();
   });
+}
+
+// Initialize Case Study Carousel (Mobile)
+function initCaseStudyCarousel() {
+  const carousel = document.getElementById('caseStudyCarousel');
+  const indicators = document.querySelectorAll('#caseStudyIndicators .carousel-indicator');
+  const prevBtn = document.getElementById('caseStudyPrev');
+  const nextBtn = document.getElementById('caseStudyNext');
+  
+  if (!carousel || indicators.length === 0) return;
+
+  let currentSlide = 0;
+  const totalSlides = carousel.children.length;
+  
+  // Touch/swipe variables
+  let startX = 0;
+  let currentX = 0;
+  let isDragging = false;
+  let startTime = 0;
+
+  function updateCarousel() {
+    const translateX = -currentSlide * 100;
+    carousel.style.transform = `translateX(${translateX}%)`;
+    
+    // Update indicators
+    indicators.forEach((indicator, index) => {
+      if (index === currentSlide) {
+        indicator.classList.add('active');
+      } else {
+        indicator.classList.remove('active');
+      }
+    });
+  }
+
+  function goToSlide(slideIndex) {
+    if (slideIndex < 0) slideIndex = totalSlides - 1;
+    if (slideIndex >= totalSlides) slideIndex = 0;
+    currentSlide = slideIndex;
+    updateCarousel();
+  }
+
+  function nextSlide() {
+    goToSlide(currentSlide + 1);
+  }
+
+  function prevSlide() {
+    goToSlide(currentSlide - 1);
+  }
+
+  // Navigation buttons
+  if (nextBtn) {
+    nextBtn.addEventListener('click', nextSlide);
+  }
+  if (prevBtn) {
+    prevBtn.addEventListener('click', prevSlide);
+  }
+
+  // Indicator clicks
+  indicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => goToSlide(index));
+  });
+
+  // Touch/swipe events
+  carousel.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    startTime = Date.now();
+    isDragging = true;
+    carousel.style.transition = 'none';
+  });
+
+  carousel.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    currentX = e.touches[0].clientX;
+    const diffX = currentX - startX;
+    const translateX = -currentSlide * 100 + (diffX / carousel.offsetWidth) * 100;
+    carousel.style.transform = `translateX(${translateX}%)`;
+  });
+
+  carousel.addEventListener('touchend', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    carousel.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+    
+    const diffX = currentX - startX;
+    const diffTime = Date.now() - startTime;
+    const threshold = carousel.offsetWidth * 0.25; // 25% of width
+    const velocity = Math.abs(diffX) / diffTime;
+    
+    if (Math.abs(diffX) > threshold || velocity > 0.5) {
+      if (diffX > 0) {
+        prevSlide();
+      } else {
+        nextSlide();
+      }
+    } else {
+      updateCarousel(); // Snap back
+    }
+  });
+
+  // Initialize
+  updateCarousel();
 }
