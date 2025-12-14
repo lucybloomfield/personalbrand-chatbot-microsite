@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.lucybloomfield.com.au/sitemap.xml
+
