@@ -35,14 +35,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Ensure all Magic Marketer links have ref=Lucy
 function ensureMagicMarketerRefs() {
-  const magicMarketerLinks = document.querySelectorAll('a[href*="magicmarketer.com"]');
+  const magicMarketerLinks = document.querySelectorAll('a[href*="magicmarketer.app"]');
   
   magicMarketerLinks.forEach(link => {
     const url = new URL(link.href);
-    if (!url.searchParams.has('ref')) {
-      url.searchParams.set('ref', 'Lucy');
-      link.href = url.toString();
-    }
+    // Always set ref to lowercase 'lucy'
+    url.searchParams.set('ref', 'lucy');
+    link.href = url.toString();
     
     // Track clicks on Magic Marketer links
     link.addEventListener('click', function() {
@@ -236,7 +235,7 @@ function initMagicStars() {
   });
 }
 
-// Initialize Case Study Carousel (Mobile)
+// Initialize Case Study Carousel (All Devices)
 function initCaseStudyCarousel() {
   const carousel = document.getElementById('caseStudyCarousel');
   const indicators = document.querySelectorAll('#caseStudyIndicators .carousel-indicator');
@@ -248,7 +247,7 @@ function initCaseStudyCarousel() {
   let currentSlide = 0;
   const totalSlides = carousel.children.length;
   
-  // Touch/swipe variables
+  // Touch/swipe and mouse drag variables
   let startX = 0;
   let currentX = 0;
   let isDragging = false;
@@ -257,6 +256,7 @@ function initCaseStudyCarousel() {
   function updateCarousel() {
     const translateX = -currentSlide * 100;
     carousel.style.transform = `translateX(${translateX}%)`;
+    carousel.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
     
     // Update indicators
     indicators.forEach((indicator, index) => {
@@ -302,15 +302,16 @@ function initCaseStudyCarousel() {
     startTime = Date.now();
     isDragging = true;
     carousel.style.transition = 'none';
-  });
+  }, { passive: false });
 
   carousel.addEventListener('touchmove', (e) => {
     if (!isDragging) return;
+    e.preventDefault(); // Prevent scrolling while swiping
     currentX = e.touches[0].clientX;
     const diffX = currentX - startX;
     const translateX = -currentSlide * 100 + (diffX / carousel.offsetWidth) * 100;
     carousel.style.transform = `translateX(${translateX}%)`;
-  });
+  }, { passive: false });
 
   carousel.addEventListener('touchend', () => {
     if (!isDragging) return;
@@ -333,6 +334,65 @@ function initCaseStudyCarousel() {
     }
   });
 
-  // Initialize
-  updateCarousel();
+  // Mouse drag events for desktop
+  carousel.addEventListener('mousedown', (e) => {
+    startX = e.clientX;
+    startTime = Date.now();
+    isDragging = true;
+    carousel.style.transition = 'none';
+    carousel.style.cursor = 'grabbing';
+    e.preventDefault();
+  });
+
+  carousel.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    currentX = e.clientX;
+    const diffX = currentX - startX;
+    const translateX = -currentSlide * 100 + (diffX / carousel.offsetWidth) * 100;
+    carousel.style.transform = `translateX(${translateX}%)`;
+  });
+
+  carousel.addEventListener('mouseup', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    carousel.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+    carousel.style.cursor = 'grab';
+    
+    const diffX = currentX - startX;
+    const diffTime = Date.now() - startTime;
+    const threshold = carousel.offsetWidth * 0.25; // 25% of width
+    const velocity = Math.abs(diffX) / diffTime;
+    
+    if (Math.abs(diffX) > threshold || velocity > 0.3) {
+      if (diffX > 0) {
+        prevSlide();
+      } else {
+        nextSlide();
+      }
+    } else {
+      updateCarousel(); // Snap back
+    }
+  });
+
+  carousel.addEventListener('mouseleave', () => {
+    if (isDragging) {
+      isDragging = false;
+      carousel.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+      carousel.style.cursor = 'grab';
+      updateCarousel(); // Snap back
+    }
+  });
+
+  // Set initial cursor
+  carousel.style.cursor = 'grab';
+
+  // Initialize - ensure carousel is visible and positioned correctly
+  if (carousel.offsetWidth > 0) {
+    updateCarousel();
+  } else {
+    // Wait for layout to be ready
+    setTimeout(() => {
+      updateCarousel();
+    }, 100);
+  }
 }

@@ -1,9 +1,20 @@
 /* Imports */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Removed Tailwind - using custom CSS only */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Utility classes (replacing Tailwind utilities) */
+.w-4 {
+  width: 1rem;
+}
+
+.h-4 {
+  height: 1rem;
+}
+
+.hidden {
+  display: none;
+}
 
 /* Brand Color Variables */
 :root {
@@ -116,7 +127,7 @@ body {
 
 /* Hero Section */
 .hero-section {
-  padding: 4rem 0 10rem;
+  padding: 8rem 0 10rem;
   min-height: 120vh;
   background-image: url('img/lucy-bloomfield-hero.png');
   background-size: cover;
@@ -163,13 +174,15 @@ body {
 
 .hero-ctas {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
   max-width: 600px;
   margin: 0 auto;
   position: relative;
   z-index: 3;
+  flex-wrap: wrap;
 }
 
 /* --- Magic Effects --- */
@@ -1301,26 +1314,165 @@ body {
   }
 }
 
-/* Case Studies Section */
-.case-studies-section {
-  padding: 3rem 0 6rem 0;
+/* Areas of Focus Section */
+.areas-of-focus-section {
+  padding: 6rem 0;
   background: var(--brand-white);
 }
 
-.case-studies-grid {
+.focus-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  align-items: start;
   margin-top: 3rem;
 }
 
-.case-study-carousel-wrapper {
+.focus-image-wrapper {
+  width: 100%;
+}
+
+.focus-image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 8px 24px rgba(35, 40, 85, 0.1);
+}
+
+.focus-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.focus-card {
+  padding: 2.5rem;
+  background: var(--brand-white);
+  border: 1px solid rgba(35, 40, 85, 0.1);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.focus-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(35, 40, 85, 0.1);
+  border-color: var(--brand-teal);
+}
+
+.focus-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--brand-black);
+  margin-bottom: 0.75rem;
+}
+
+.focus-card-description {
+  color: #4a4a4a;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .focus-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .focus-image-wrapper {
+    order: 1;
+  }
+  
+  .focus-grid {
+    order: 2;
+  }
+  
+  .focus-card {
+    padding: 2rem;
+  }
+}
+
+/* Case Studies Section */
+.case-studies-section {
+  padding: 6rem 0;
+  background: #f5f5f5;
+}
+
+.case-studies-grid {
   display: none;
 }
 
-.carousel-indicators,
+.case-study-carousel-wrapper {
+  position: relative;
+  margin-top: 3rem;
+  overflow: hidden;
+}
+
+.case-study-carousel {
+  display: flex;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 2rem;
+}
+
+.case-study-carousel .case-study-card {
+  min-width: 100%;
+  flex-shrink: 0;
+}
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.carousel-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(35, 40, 85, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.carousel-indicator.active {
+  background: var(--brand-teal);
+  width: 24px;
+  border-radius: 5px;
+}
+
 .carousel-nav {
-  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--brand-white);
+  border: 1px solid rgba(35, 40, 85, 0.1);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  color: var(--brand-navy);
+}
+
+.carousel-nav:hover {
+  background: var(--brand-teal);
+  color: var(--brand-white);
+  border-color: var(--brand-teal);
+}
+
+.carousel-prev {
+  left: 1rem;
+}
+
+.carousel-next {
+  right: 1rem;
 }
 
 .case-study-card {
@@ -1377,8 +1529,21 @@ body {
 }
 
 @media (max-width: 768px) {
-  .case-studies-grid {
-    grid-template-columns: 1fr;
+  .carousel-nav {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .carousel-prev {
+    left: 0.5rem;
+  }
+  
+  .carousel-next {
+    right: 0.5rem;
+  }
+  
+  .case-study-card {
+    padding: 2rem;
   }
 }
 
@@ -1826,6 +1991,7 @@ body {
 
   .hero-ctas {
     margin-top: 1.5rem;
+    flex-direction: column;
   }
 
   .hero-ctas .btn {
@@ -2006,21 +2172,27 @@ body {
   }
 
   .case-study-carousel-wrapper {
+    display: block;
     position: relative;
-        width: 100%;
+    width: 100%;
     overflow: hidden;
+    margin-top: 3rem;
   }
 
   .case-study-carousel {
     display: flex;
+    width: 100%;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    touch-action: pan-y pinch-zoom;
+    touch-action: pan-x;
+    will-change: transform;
   }
 
   .case-study-carousel .case-study-card {
     min-width: 100%;
+    width: 100%;
     flex-shrink: 0;
     padding: 1.5rem;
+    box-sizing: border-box;
   }
 
   .case-study-card {
@@ -2041,7 +2213,7 @@ body {
   }
 
   .carousel-indicators {
-    display: flex;
+    display: flex !important;
     justify-content: center;
     gap: 0.75rem;
     margin-top: 2rem;
@@ -2065,6 +2237,7 @@ body {
   }
 
   .carousel-nav {
+    display: flex !important;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -2074,7 +2247,6 @@ body {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    display: flex !important;
     align-items: center;
     justify-content: center;
     cursor: pointer;
